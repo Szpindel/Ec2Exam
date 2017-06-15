@@ -11,13 +11,13 @@ public class Item implements GameObject{
     private Color color;
     private int x;
     private int y;
-    private Jake jake;
+    private PacMan pacMan;
 
-    public Item(Color color, int x, int y, Jake jake) {
+    public Item(Color color, int x, int y, PacMan pacMan) {
         this.color = color;
         this.x = x;
         this.y = y;
-        this.jake = jake;
+        this.pacMan = pacMan;
     }
 
     public Color getColor() {
@@ -35,18 +35,18 @@ public class Item implements GameObject{
     @Override
     public void update(KeyCode keypressed) {
 
-        if (x == jake.getX() && y == jake.getY())
+        if (x == pacMan.getX() && y == pacMan.getY())
         {
             color = Color.RED;
-            jake.addToTale();
+            pacMan.addToTale();
         }
 
     }
 
     @Override
-    public void draw(GraphicsContext g, SceneInfo sceneInfo) {
+    public void draw(GraphicsContext g, Maze maze) {
         g.setFill(this.getColor());
 
-        g.fillRoundRect(this.getX() * sceneInfo.getFieldWidth(), this.getY() * sceneInfo.getFieldHeight(), sceneInfo.getFieldWidth(), sceneInfo.getFieldHeight(), 5,5);
+        g.fillRoundRect(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight(), 5,5);
     }
 }

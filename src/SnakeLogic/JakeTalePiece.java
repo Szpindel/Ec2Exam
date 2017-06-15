@@ -25,13 +25,13 @@ public class JakeTalePiece implements GameObject{
     }
 
     @Override
-    public void draw(GraphicsContext graphicsContext, SceneInfo sceneInfo) {
+    public void draw(GraphicsContext graphicsContext, Maze maze) {
         // draw it self
         graphicsContext.setFill(Color.WHITE);
-        graphicsContext.fillRoundRect(this.getX() * sceneInfo.getFieldWidth(), this.getY() * sceneInfo.getFieldHeight(), sceneInfo.getFieldWidth(), sceneInfo.getFieldHeight(), 3, 3);
+        graphicsContext.fillRoundRect(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight(), 3, 3);
         // draw next
         if (next != null){
-            next.draw(graphicsContext, sceneInfo);
+            next.draw(graphicsContext, maze);
         }
     }
 

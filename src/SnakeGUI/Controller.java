@@ -2,8 +2,8 @@ package SnakeGUI;
 
 import SnakeLogic.GameObject;
 import SnakeLogic.Item;
-import SnakeLogic.Jake;
-import SnakeLogic.SceneInfo;
+import SnakeLogic.PacMan;
+import SnakeLogic.Maze;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,14 +24,14 @@ public class Controller {
     @FXML
     Canvas canvas;
 
-    private SceneInfo sceneInfo;
+    private Maze maze;
     private Random random = new Random();
     private int gameLoopDelay = 500;
     private float refreshRate =300;
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
-    private Jake jake;
+    private PacMan pacMan;
 
     public void btnStartAction(ActionEvent event)
     {
@@ -46,13 +46,13 @@ public class Controller {
      */
     public void initialize()
     {
-        sceneInfo = new SceneInfo(canvas);
+        maze = new Maze(canvas);
 
-        jake = new Jake(sceneInfo.getRandomPoint());
-        gameObjects.add(jake);
-
-        AddItems();
-
+//        pacMan = new PacMan(maze.getRandomPoint());
+//        gameObjects.add(pacMan);
+//
+//        AddItems();
+//
         // Start and control game loop
         new AnimationTimer(){
             long lastUpdate;
@@ -60,18 +60,18 @@ public class Controller {
             {
                 if (now > lastUpdate + refreshRate * 1000000)
                 {
-                    lastUpdate = now;
-                    update(now);
+//                    lastUpdate = now;
+//                    update(now);
                 }
             }
         }.start();
     }
 
     private void AddItems() {
-        Point pos1 = sceneInfo.getRandomPoint();
-        gameObjects.add(new Item(Color.BLUE, pos1.x, pos1.y, jake));
-        Point pos2 = sceneInfo.getRandomPoint();
-        gameObjects.add(new Item(Color.LIGHTBLUE, pos2.x,pos2.y, jake));
+        Point pos1 = maze.getRandomPoint();
+        gameObjects.add(new Item(Color.BLUE, pos1.x, pos1.y, pacMan));
+        Point pos2 = maze.getRandomPoint();
+        gameObjects.add(new Item(Color.LIGHTBLUE, pos2.x,pos2.y, pacMan));
     }
 
     public void keyPressed(KeyCode keyCode)
@@ -92,8 +92,8 @@ public class Controller {
 
         if (random.nextInt(100) > itemSpawnPercentage)
         {
-            Point randomPoint = sceneInfo.getRandomPoint();
-            gameObjects.add(new Item(Color.LIGHTBLUE, randomPoint.x,randomPoint.y, jake));
+            Point randomPoint = maze.getRandomPoint();
+            gameObjects.add(new Item(Color.LIGHTBLUE, randomPoint.x,randomPoint.y, pacMan));
         }
 
         drawCanvas();
@@ -108,12 +108,20 @@ public class Controller {
         GraphicsContext g = canvas.getGraphicsContext2D();
 
         // clear canvas
-        g.clearRect(0,0,sceneInfo.getWidth()*sceneInfo.getFieldWidth() ,sceneInfo.getHeight()*sceneInfo.getFieldHeight());
+        g.clearRect(0,0, maze.getWidth()* maze.getFieldWidth() , maze.getHeight()* maze.getFieldHeight());
+
+        // Draw maze
+
+        // Draw pills
+
+        // Draw ghosts
+
+        // Draw pacman
 
         // draw gameObjects
         for (GameObject item : gameObjects)
         {
-            item.draw(g, sceneInfo);
+            item.draw(g, maze);
         }
 
     }

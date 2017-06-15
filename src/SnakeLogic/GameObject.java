@@ -10,5 +10,5 @@ public interface GameObject {
 
     void update(KeyCode keypressed);
 
-    void draw(GraphicsContext graphicsContext, SceneInfo sceneInfo);
+    void draw(GraphicsContext graphicsContext, Maze maze);
 }

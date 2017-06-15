@@ -10,18 +10,18 @@ import java.util.Random;
 /**
  * Created by Ebbe Vang on 21-02-2017.
  */
-public class Jake implements GameObject{
+public class PacMan implements GameObject{
 
     private int X;
     private int Y;
     Random random = new Random();
-    private SceneInfo sceneInfo;
+    private Maze maze;
     private JakeTalePiece taleFirst;
     private JakeTalePiece taleLast;
 
-    public Jake(Point position)
+    public PacMan(Point position)
     {
-        this.sceneInfo = sceneInfo;
+        this.maze = maze;
         X = position.x;
         Y = position.y;
     }
@@ -54,14 +54,14 @@ public class Jake implements GameObject{
     }
 
     @Override
-    public void draw(GraphicsContext graphicsContext, SceneInfo sceneInfo) {
-        // draw Jake
+    public void draw(GraphicsContext graphicsContext, Maze maze) {
+        // draw PacMan
         graphicsContext.setFill(Color.WHITE);
-        graphicsContext.fillRoundRect(this.getX() * sceneInfo.getFieldWidth(), this.getY() * sceneInfo.getFieldHeight(), sceneInfo.getFieldWidth(), sceneInfo.getFieldHeight(), 3, 3);
+        graphicsContext.fillRoundRect(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight(), 3, 3);
 
         //draw tale
         if (taleFirst != null) {
-            taleFirst.draw(graphicsContext, sceneInfo);
+            taleFirst.draw(graphicsContext, maze);
         }
     }
 

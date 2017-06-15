@@ -8,17 +8,17 @@ import java.util.Random;
 /**
  * Created by Ebbe Vang on 21-02-2017.
  */
-public class SceneInfo {
+public class Maze {
     private double fieldHeight;
     private double fieldWidth;
     private int width = 30;
     private int height = 20;
     private Random random = new Random();
 
-    public SceneInfo(Canvas canvas)
+    public Maze(Canvas canvas)
     {
         fieldHeight = canvas.getHeight() / height;
-        fieldWidth =canvas.getWidth() / width;
+        fieldWidth =    canvas.getWidth() / width;
     }
 
     public double getFieldHeight() {
