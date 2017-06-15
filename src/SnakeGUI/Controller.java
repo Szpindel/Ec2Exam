@@ -60,8 +60,8 @@ public class Controller {
             {
                 if (now > lastUpdate + refreshRate * 1000000)
                 {
-//                    lastUpdate = now;
-//                    update(now);
+                    lastUpdate = now;
+                    update(now);
                 }
             }
         }.start();
@@ -85,16 +85,16 @@ public class Controller {
      */
     private void update(long now)
     {
-
-        for (int i = 0; i <gameObjects.size() ; i++) {
-            gameObjects.get(i).update(keyPressed);
-        }
-
-        if (random.nextInt(100) > itemSpawnPercentage)
-        {
-            Point randomPoint = maze.getRandomPoint();
-            gameObjects.add(new Item(Color.LIGHTBLUE, randomPoint.x,randomPoint.y, pacMan));
-        }
+//
+//        for (int i = 0; i <gameObjects.size() ; i++) {
+//            gameObjects.get(i).update(keyPressed);
+//        }
+//
+//        if (random.nextInt(100) > itemSpawnPercentage)
+//        {
+//            Point randomPoint = maze.getRandomPoint();
+//            gameObjects.add(new Item(Color.LIGHTBLUE, randomPoint.x,randomPoint.y, pacMan));
+//        }
 
         drawCanvas();
 
@@ -111,6 +111,7 @@ public class Controller {
         g.clearRect(0,0, maze.getWidth()* maze.getFieldWidth() , maze.getHeight()* maze.getFieldHeight());
 
         // Draw maze
+        maze.draw(g);
 
         // Draw pills
 

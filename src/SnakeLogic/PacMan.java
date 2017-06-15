@@ -10,7 +10,7 @@ import java.util.Random;
 /**
  * Created by Ebbe Vang on 21-02-2017.
  */
-public class PacMan implements GameObject{
+public class PacMan  implements GameObject{
 
     private int X;
     private int Y;
