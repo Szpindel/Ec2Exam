@@ -10,6 +10,8 @@ import java.util.Random;
 /**
  * Created by Ebbe Vang on 21-02-2017.
  */
+
+//fix this "tale" business
 public class PacMan  implements GameObject{
 
     private int X;
@@ -17,7 +19,7 @@ public class PacMan  implements GameObject{
     Random random = new Random();
     private Maze maze;
     private JakeTalePiece taleFirst;
-    private JakeTalePiece taleLast;
+ //   private JakeTalePiece taleLast;
 
     public PacMan(Point position)
     {
@@ -56,9 +58,8 @@ public class PacMan  implements GameObject{
     @Override
     public void draw(GraphicsContext graphicsContext, Maze maze) {
         // draw PacMan
-        graphicsContext.setFill(Color.WHITE);
-        graphicsContext.fillRoundRect(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight(), 3, 3);
-
+        graphicsContext.setFill(Color.YELLOW);
+        graphicsContext.fillOval(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight());
         //draw tale
         if (taleFirst != null) {
             taleFirst.draw(graphicsContext, maze);
@@ -79,18 +80,18 @@ public class PacMan  implements GameObject{
         Y = y;
     }
 
-    public void addToTale() {
-        JakeTalePiece jtp = new JakeTalePiece();
-        if (taleFirst == null)
-        {
-            taleFirst = jtp;
-            taleLast = jtp;
-        }
-        else
-        {
-            taleLast.setNext(jtp);
-            taleLast = jtp;
-        }
-
-    }
+//    public void addToTale() {
+//        JakeTalePiece jtp = new JakeTalePiece();
+//        if (taleFirst == null)
+//        {
+//            taleFirst = jtp;
+//            taleLast = jtp;
+//        }
+//        else
+//        {
+//            taleLast.setNext(jtp);
+//            taleLast = jtp;
+//        }
+//
+//    }
 }

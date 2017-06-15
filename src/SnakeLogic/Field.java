@@ -7,6 +7,8 @@ import javafx.scene.paint.Color;
  * Created by brunofloerke on 15/06/2017.
  */
 
+
+
 public abstract class Field {
     int x, y;
     double width, height;
@@ -25,5 +27,6 @@ public abstract class Field {
         g.setFill(color);
         g.fillRect(x*width, y*height, width, height);
     };
+
 
 }

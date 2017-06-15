@@ -22,12 +22,10 @@ public class Maze {
         fieldHeight = canvas.getHeight() / height;
         fieldWidth =  canvas.getWidth() / width;
 
-        // Populate fields
+        // Read Maze_0.txt and populate fields array accordingly
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("Maze_0.txt"));
-
-
             for (int x = 0; x < width; x++) {
                 String[] st = br.readLine().trim().split("");
                 for (int y = 0;y < height; y++) {
@@ -48,11 +46,13 @@ public class Maze {
                             fields[x][y] = bigPillPath;
                             break;
                         case 3:
-                            Path noPillPath = new Path(x,y,fieldWidth,fieldHeight);
-                            fields[x][y] = noPillPath;
+                            Path emptyPath = new Path(x,y,fieldWidth,fieldHeight);
+                            emptyPath.createEmptyPath();
+                            fields[x][y] = emptyPath;
                             break;
                         case 4:
                             Path ghostSpawnPath = new Path(x,y,fieldWidth,fieldHeight);
+                            ghostSpawnPath.createGhostSpawnPath();
                             fields[x][y] = ghostSpawnPath;
                             break;
 

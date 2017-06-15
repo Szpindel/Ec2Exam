@@ -7,6 +7,9 @@ import javafx.scene.paint.Color;
 /**
  * Created by Ebbe Vang on 19-01-2017.
  */
+
+
+//this class needs to go
 public class Item implements GameObject{
     private Color color;
     private int x;
@@ -35,11 +38,11 @@ public class Item implements GameObject{
     @Override
     public void update(KeyCode keypressed) {
 
-        if (x == pacMan.getX() && y == pacMan.getY())
-        {
-            color = Color.RED;
-            pacMan.addToTale();
-        }
+//        if (x == pacMan.getX() && y == pacMan.getY())
+//        {
+//            color = Color.RED;
+//            pacMan.addToTale();
+//        }
 
     }
 
