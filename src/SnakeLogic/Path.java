@@ -63,16 +63,16 @@ public class Path extends Field {
     }
 
     void drawSmallPill(GraphicsContext g){
-        double radius = width/2.5;
+        double radius = width/3.3;
         double offSet = width/2-radius/2;
         g.setFill(Color.BLACK);
-        g.fillRect(x*width+offSet, y*height+offSet, width/radius, height/radius);
+        g.fillOval(x*width+offSet, y*height+offSet, radius, radius);
     }
 
     void drawBigPill(GraphicsContext g){
-        double radius = width/1.5;
+        double radius = width/2.3;
         double offSet = width/2-radius/2;
         g.setFill(Color.BLACK);
-        g.fillOval(x*width+offSet, y*height+offSet, width/radius, height/radius);
+        g.fillOval(x*width+offSet, y*height+offSet, radius, radius);
     }
 }

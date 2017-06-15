@@ -13,11 +13,11 @@ public class JakeTalePiece implements GameObject{
     private int y;
     private JakeTalePiece next;
     @Override
-    public void update(KeyCode keypressed) {
+    public void update(KeyCode keyPressed, Maze maze) {
         if (next != null)
         {
             //update next position
-            getNext().update(keypressed);
+            getNext().update(keyPressed, maze);
 
             getNext().setX(x);
             getNext().setY(y);

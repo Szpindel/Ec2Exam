@@ -8,7 +8,7 @@ import javafx.scene.input.KeyCode;
  */
 public interface GameObject {
 
-    void update(KeyCode keypressed);
+    void update(KeyCode keyPressed, Maze maze);
 
     void draw(GraphicsContext graphicsContext, Maze maze);
 }

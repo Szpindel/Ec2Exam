@@ -36,7 +36,7 @@ public class Item implements GameObject{
     }
 
     @Override
-    public void update(KeyCode keypressed) {
+    public void update(KeyCode keyPressed, Maze maze) {
 
 //        if (x == pacMan.getX() && y == pacMan.getY())
 //        {

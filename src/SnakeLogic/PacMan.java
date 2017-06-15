@@ -12,47 +12,57 @@ import java.util.Random;
  */
 
 //fix this "tale" business
-public class PacMan  implements GameObject{
+public class PacMan implements GameObject {
 
     private int X;
     private int Y;
     Random random = new Random();
     private Maze maze;
     private JakeTalePiece taleFirst;
- //   private JakeTalePiece taleLast;
+    //   private JakeTalePiece taleLast;
 
-    public PacMan(Point position)
-    {
+    public PacMan(Point position) {
         this.maze = maze;
         X = position.x;
         Y = position.y;
     }
 
     @Override
-    public void update(KeyCode keyPressed) {
+    public void update(KeyCode keyPressed, Maze maze) {
 
-        if (taleFirst != null) {
-            taleFirst.update(keyPressed);
-            taleFirst.setX(X);
-            taleFirst.setY(Y);
 
-        }
-
-        switch (keyPressed)
-        {
+        switch (keyPressed) {
             case DOWN:
-                this.setY(this.getY() + 1);
+                if (maze.checkAvailability(new Point(this.getX(), this.getY() + 1))) {
+                    this.setY(this.getY() + 1);
+                }
                 break;
             case LEFT:
-                this.setX(this.getX() - 1);
+                if (maze.checkAvailability(new Point(this.getX() - 1, this.getY()))) {
+                    this.setX(this.getX() - 1);
+                }
                 break;
             case RIGHT:
-                this.setX(this.getX() + 1);
+                if (maze.checkAvailability(new Point(this.getX() + 1, this.getY()))) {
+                    this.setX(this.getX() + 1);
+                }
                 break;
             case UP:
-                this.setY(this.getY() - 1);
+                if (maze.checkAvailability(new Point(this.getX(), this.getY() - 1))) {
+                    this.setY(this.getY() - 1);
+                }
                 break;
         }
+
+        // Check if wrap-around
+        if(getX() <= 0){
+            this.setX(maze.getWidth());
+        }else if(getX() >= maze.getWidth()){
+            this.setX(0);
+
+        }
+
+
     }
 
     @Override
@@ -60,17 +70,17 @@ public class PacMan  implements GameObject{
         // draw PacMan
         graphicsContext.setFill(Color.YELLOW);
         graphicsContext.fillOval(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight());
-        //draw tale
-        if (taleFirst != null) {
-            taleFirst.draw(graphicsContext, maze);
-        }
+
+        System.out.println(this.getX() + " " + this.getY());
     }
 
     public int getX() {
         return X;
     }
 
-    public void setX(int x) { X = x; }
+    public void setX(int x) {
+        X = x;
+    }
 
     public int getY() {
         return Y;

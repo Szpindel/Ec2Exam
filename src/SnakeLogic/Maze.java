@@ -21,81 +21,19 @@ public class Maze {
     private Field[][] fields;
 
     public Maze(Canvas canvas) {
-
-
-//        // Read Maze_0.txt and populate fields array accordingly
-//        BufferedReader br = null;
-//        try {
-//            br = new BufferedReader(new FileReader("Maze_0.txt"));
-//            for (int x = 0; x < width; x++) {
-//                String[] st = br.readLine().trim().split("");
-//                for (int y = 0;y < height; y++) {
-//                    int type = Integer.parseInt(st[x]);
-//                    switch (type){
-//                        case 0:
-//                            Wall wall = new Wall(x,y,fieldWidth,fieldHeight);
-//                            fields[x][y] = wall;
-//                            break;
-//                        case 1:
-//                            Path smallPillPath = new Path(x,y,fieldWidth,fieldHeight);
-//                            smallPillPath.createSmallPill();
-//                            fields[x][y] = smallPillPath;
-//                            break;
-//                        case 2:
-//                            Path bigPillPath = new Path(x,y,fieldWidth,fieldHeight);
-//                            bigPillPath.createBigPill();
-//                            fields[x][y] = bigPillPath;
-//                            break;
-//                        case 3:
-//                            Path emptyPath = new Path(x,y,fieldWidth,fieldHeight);
-//                            emptyPath.createEmptyPath();
-//                            fields[x][y] = emptyPath;
-//                            break;
-//                        case 4:
-//                            Path ghostSpawnPath = new Path(x,y,fieldWidth,fieldHeight);
-//                            ghostSpawnPath.createGhostSpawnPath();
-//                            fields[x][y] = ghostSpawnPath;
-//                            break;
-//
-//                    }
-//
-//                }
-//            }
-//
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-//        for(int y = 0; y < height; y++){
-//            for(int x = 0; x < width; x++){
-//                if(Math.random() > 0.5) {
-//                    fields[x][y] = new Path(x,y,fieldWidth,fieldHeight);
-//                    System.out.println("path");
-//                }else{
-//                    fields[x][y] = new Wall(x,y,fieldWidth,fieldHeight);
-//                    System.out.println("wall");
-//                }
-//            }
-//        }
-
+        // Load array and set height
         int[][] array = convertToArray("Maze_0.txt");
 
         height = array[0].length;
         width = array.length;
         fields = new Field[width][height];
 
-        System.out.println(width + " " + height);
-
+        // Set field dimensions
         fieldHeight = canvas.getHeight() / height;
         fieldWidth =  canvas.getWidth() / width;
 
         for(int y = 0; y < array[0].length; y++){
             for (int x = 0; x < array.length; x++) {
-                // ENTER BRUNO
                 int type = array[x][y];
                 switch (type){
                     case 0:
@@ -122,14 +60,10 @@ public class Maze {
                         ghostSpawnPath.createGhostSpawnPath();
                         fields[x][y] = ghostSpawnPath;
                         break;
-
                 }
             }
         }
     }
-
-
-
 
     public void draw(GraphicsContext g) {
         // Draw fields
@@ -139,9 +73,6 @@ public class Maze {
             }
         }
     }
-
-
-
 
     public double getFieldHeight() {
         return fieldHeight;
@@ -218,6 +149,9 @@ public class Maze {
     }
 
 
+    public boolean checkAvailability(Point point) {
+        return fields[point.x][point.y].isWalkable();
+    }
 }
 
 

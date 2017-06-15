@@ -49,8 +49,8 @@ public class Controller {
     {
             maze = new Maze(canvas);
 
-//        pacMan = new PacMan(maze.getRandomPoint());
-//        gameObjects.add(pacMan);
+            pacMan = new PacMan(new Point(15,15));
+      //      gameObjects.add(pacMan);
 //
 //        AddItems();
 //
@@ -86,6 +86,9 @@ public class Controller {
      */
     private void update(long now)
     {
+        pacMan.update(keyPressed, maze);
+
+
 //
 //        for (int i = 0; i <gameObjects.size() ; i++) {
 //            gameObjects.get(i).update(keyPressed);
@@ -114,11 +117,10 @@ public class Controller {
         // Draw maze
         maze.draw(g);
 
-        // Draw pills
-
         // Draw ghosts
 
         // Draw pacman
+        pacMan.draw(g,maze);
 
         // draw gameObjects
         for (GameObject item : gameObjects)
