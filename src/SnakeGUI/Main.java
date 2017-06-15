@@ -19,7 +19,7 @@ public class Main extends Application {
 
         Controller controller = (Controller) loader.getController();
 
-        Scene scene = new Scene(root, 600,400);
+        Scene scene = new Scene(root, 560,620);
         scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {

@@ -6,6 +6,8 @@ import javafx.scene.canvas.GraphicsContext;
 import java.awt.*;
 import java.io.*;
 import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by Ebbe Vang on 21-02-2017.
@@ -16,57 +18,56 @@ public class Maze {
     private int width = 20;
     private int height = 20;
     private Random random = new Random();
-    private Field[][] fields = new Field[width][height];
+    private Field[][] fields;
 
     public Maze(Canvas canvas) {
-        fieldHeight = canvas.getHeight() / height;
-        fieldWidth =  canvas.getWidth() / width;
-
-        // Read Maze_0.txt and populate fields array accordingly
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader("Maze_0.txt"));
-            for (int x = 0; x < width; x++) {
-                String[] st = br.readLine().trim().split("");
-                for (int y = 0;y < height; y++) {
-                    int type = Integer.parseInt(st[x]);
-                    switch (type){
-                        case 0:
-                            Wall wall = new Wall(x,y,fieldWidth,fieldHeight);
-                            fields[x][y] = wall;
-                            break;
-                        case 1:
-                            Path smallPillPath = new Path(x,y,fieldWidth,fieldHeight);
-                            smallPillPath.createSmallPill();
-                            fields[x][y] = smallPillPath;
-                            break;
-                        case 2:
-                            Path bigPillPath = new Path(x,y,fieldWidth,fieldHeight);
-                            bigPillPath.createBigPill();
-                            fields[x][y] = bigPillPath;
-                            break;
-                        case 3:
-                            Path emptyPath = new Path(x,y,fieldWidth,fieldHeight);
-                            emptyPath.createEmptyPath();
-                            fields[x][y] = emptyPath;
-                            break;
-                        case 4:
-                            Path ghostSpawnPath = new Path(x,y,fieldWidth,fieldHeight);
-                            ghostSpawnPath.createGhostSpawnPath();
-                            fields[x][y] = ghostSpawnPath;
-                            break;
-
-                    }
-
-                }
-            }
 
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        // Read Maze_0.txt and populate fields array accordingly
+//        BufferedReader br = null;
+//        try {
+//            br = new BufferedReader(new FileReader("Maze_0.txt"));
+//            for (int x = 0; x < width; x++) {
+//                String[] st = br.readLine().trim().split("");
+//                for (int y = 0;y < height; y++) {
+//                    int type = Integer.parseInt(st[x]);
+//                    switch (type){
+//                        case 0:
+//                            Wall wall = new Wall(x,y,fieldWidth,fieldHeight);
+//                            fields[x][y] = wall;
+//                            break;
+//                        case 1:
+//                            Path smallPillPath = new Path(x,y,fieldWidth,fieldHeight);
+//                            smallPillPath.createSmallPill();
+//                            fields[x][y] = smallPillPath;
+//                            break;
+//                        case 2:
+//                            Path bigPillPath = new Path(x,y,fieldWidth,fieldHeight);
+//                            bigPillPath.createBigPill();
+//                            fields[x][y] = bigPillPath;
+//                            break;
+//                        case 3:
+//                            Path emptyPath = new Path(x,y,fieldWidth,fieldHeight);
+//                            emptyPath.createEmptyPath();
+//                            fields[x][y] = emptyPath;
+//                            break;
+//                        case 4:
+//                            Path ghostSpawnPath = new Path(x,y,fieldWidth,fieldHeight);
+//                            ghostSpawnPath.createGhostSpawnPath();
+//                            fields[x][y] = ghostSpawnPath;
+//                            break;
+//
+//                    }
+//
+//                }
+//            }
+//
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
 //        for(int y = 0; y < height; y++){
@@ -80,6 +81,51 @@ public class Maze {
 //                }
 //            }
 //        }
+
+        int[][] array = convertToArray("Maze_0.txt");
+
+        height = array[0].length;
+        width = array.length;
+        fields = new Field[width][height];
+
+        System.out.println(width + " " + height);
+
+        fieldHeight = canvas.getHeight() / height;
+        fieldWidth =  canvas.getWidth() / width;
+
+        for(int y = 0; y < array[0].length; y++){
+            for (int x = 0; x < array.length; x++) {
+                // ENTER BRUNO
+                int type = array[x][y];
+                switch (type){
+                    case 0:
+                        Wall wall = new Wall(x,y,fieldWidth,fieldHeight);
+                        fields[x][y] = wall;
+                        break;
+                    case 1:
+                        Path smallPillPath = new Path(x,y,fieldWidth,fieldHeight);
+                        smallPillPath.createSmallPill();
+                        fields[x][y] = smallPillPath;
+                        break;
+                    case 2:
+                        Path bigPillPath = new Path(x,y,fieldWidth,fieldHeight);
+                        bigPillPath.createBigPill();
+                        fields[x][y] = bigPillPath;
+                        break;
+                    case 3:
+                        Path emptyPath = new Path(x,y,fieldWidth,fieldHeight);
+                        emptyPath.createEmptyPath();
+                        fields[x][y] = emptyPath;
+                        break;
+                    case 4:
+                        Path ghostSpawnPath = new Path(x,y,fieldWidth,fieldHeight);
+                        ghostSpawnPath.createGhostSpawnPath();
+                        fields[x][y] = ghostSpawnPath;
+                        break;
+
+                }
+            }
+        }
     }
 
 
@@ -131,6 +177,44 @@ public class Maze {
 
     public Point getRandomPoint() {
         return new Point(random.nextInt(width), random.nextInt(height));
+    }
+
+    public static int[][] convertToArray(String fileName){
+        List<List<Integer>> twoDim = new ArrayList<List<Integer>>();
+        int height = 0;
+        int width = 0;
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)));
+            String line = reader.readLine();
+            while(line != null) {
+                twoDim.add(new ArrayList<Integer>());
+
+                for (char c : line.toCharArray()) {
+                    twoDim.get(height).add(Character.getNumericValue(c));
+                }
+                line = reader.readLine();
+                height++;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        width = twoDim.get(0).size();
+        height = twoDim.size();
+
+        int[][] array = new int[width][height];
+
+        for (int y = 0; y < height; y++)
+        {
+            for (int x = 0; x < width; x++)
+            {
+                int var = twoDim.get(y).get(x);
+                array[x][y] = var;
+            }
+        }
+
+        return array;
     }
 
 

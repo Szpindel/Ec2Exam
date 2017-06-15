@@ -14,6 +14,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.*;
 
 public class Controller {
@@ -46,7 +47,7 @@ public class Controller {
      */
     public void initialize()
     {
-        maze = new Maze(canvas);
+            maze = new Maze(canvas);
 
 //        pacMan = new PacMan(maze.getRandomPoint());
 //        gameObjects.add(pacMan);
