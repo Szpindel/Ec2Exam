@@ -16,6 +16,7 @@ public class PacMan implements GameObject {
 
     private int X;
     private int Y;
+    private int score;
     Random random = new Random();
     private Maze maze;
     private JakeTalePiece taleFirst;
@@ -29,8 +30,6 @@ public class PacMan implements GameObject {
 
     @Override
     public void update(KeyCode keyPressed, Maze maze) {
-
-
         switch (keyPressed) {
             case DOWN:
                 if (maze.checkAvailability(new Point(this.getX(), this.getY() + 1))) {
@@ -61,8 +60,6 @@ public class PacMan implements GameObject {
             this.setX(0);
 
         }
-
-
     }
 
     @Override
@@ -70,8 +67,6 @@ public class PacMan implements GameObject {
         // draw PacMan
         graphicsContext.setFill(Color.YELLOW);
         graphicsContext.fillOval(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight());
-
-        System.out.println(this.getX() + " " + this.getY());
     }
 
     public int getX() {
@@ -88,6 +83,14 @@ public class PacMan implements GameObject {
 
     public void setY(int y) {
         Y = y;
+    }
+
+    public void increaseScore(int increment){
+        score+=increment;
+    }
+
+    public int getScore() {
+        return score;
     }
 
 //    public void addToTale() {

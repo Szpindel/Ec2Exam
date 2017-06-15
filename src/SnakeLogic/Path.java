@@ -55,6 +55,9 @@ public class Path extends Field {
 
     @Override
     public void draw(GraphicsContext g){
+        g.setFill(color);
+        super.draw(g);
+
         if(hasSmallPill){
             drawSmallPill(g);
         }else if (hasBigPill){
@@ -65,14 +68,19 @@ public class Path extends Field {
     void drawSmallPill(GraphicsContext g){
         double radius = width/3.3;
         double offSet = width/2-radius/2;
-        g.setFill(Color.BLACK);
+        g.setFill(Color.WHITESMOKE);
         g.fillOval(x*width+offSet, y*height+offSet, radius, radius);
     }
 
     void drawBigPill(GraphicsContext g){
         double radius = width/2.3;
-        double offSet = width/2-radius/2;
-        g.setFill(Color.BLACK);
+        double offSet = (width/2-radius/2);
+        g.setFill(Color.ANTIQUEWHITE);
+
         g.fillOval(x*width+offSet, y*height+offSet, radius, radius);
+    }
+
+    public void removePill() {
+        hasBigPill = hasSmallPill = false;
     }
 }

@@ -13,10 +13,10 @@ import java.util.ArrayList;
  * Created by Ebbe Vang on 21-02-2017.
  */
 public class Maze {
-    private double fieldHeight;
-    private double fieldWidth;
-    private int width = 20;
-    private int height = 20;
+    private double fieldHeight = 20;
+    private double fieldWidth = 20;
+    private int width;
+    private int height;
     private Random random = new Random();
     private Field[][] fields;
 
@@ -29,8 +29,10 @@ public class Maze {
         fields = new Field[width][height];
 
         // Set field dimensions
-        fieldHeight = canvas.getHeight() / height;
-        fieldWidth =  canvas.getWidth() / width;
+        canvas.setHeight(height*fieldHeight);
+        canvas.setWidth(width*fieldWidth);
+
+
 
         for(int y = 0; y < array[0].length; y++){
             for (int x = 0; x < array.length; x++) {
@@ -151,6 +153,22 @@ public class Maze {
 
     public boolean checkAvailability(Point point) {
         return fields[point.x][point.y].isWalkable();
+    }
+
+    public void update(PacMan pacman){
+        // Check for pills
+        if(fields[pacman.getX()][pacman.getY()] instanceof Path){
+            Path path = (Path) fields[pacman.getX()][pacman.getY()];
+            if(path.hasSmallPill){
+                pacman.increaseScore(100);
+                path.removePill();
+            }else if(path.hasBigPill){
+                pacman.increaseScore(500);
+                path.removePill();
+
+                // SET SUPER MODE FOR PACMAN
+            }
+        };
     }
 }
 

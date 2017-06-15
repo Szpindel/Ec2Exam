@@ -12,7 +12,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SnakeGUI.Controller">
    <center>
-      <Canvas id="canvas" fx:id="canvas" height="357.0" width="600.0" BorderPane.alignment="CENTER">
+      <Canvas id="canvas" fx:id="canvas" height="620.0" width="580.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets />
          </BorderPane.margin>

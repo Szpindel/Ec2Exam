@@ -88,6 +88,9 @@ public class Controller {
     {
         pacMan.update(keyPressed, maze);
 
+        maze.update(pacMan);
+
+        labelStatus.setText(pacMan.getScore()+"");
 
 //
 //        for (int i = 0; i <gameObjects.size() ; i++) {
