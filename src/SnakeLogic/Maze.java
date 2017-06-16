@@ -76,42 +76,7 @@ public class Maze {
         }
     }
 
-    public double getFieldHeight() {
-        return fieldHeight;
-    }
-
-    public void setFieldHeight(double fieldHeight) {
-        this.fieldHeight = fieldHeight;
-    }
-
-    public double getFieldWidth() {
-        return fieldWidth;
-    }
-
-    public void setFieldWidth(double fieldWidth) {
-        this.fieldWidth = fieldWidth;
-    }
-
-    public int getWidth() {
-        return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
-    public int getHeight() {
-        return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public Point getRandomPoint() {
-        return new Point(random.nextInt(width), random.nextInt(height));
-    }
-
+   //read Maze_0.txt
     public static int[][] convertToArray(String fileName){
         List<List<Integer>> twoDim = new ArrayList<List<Integer>>();
         int height = 0;
@@ -169,6 +134,42 @@ public class Maze {
                 // SET SUPER MODE FOR PACMAN
             }
         };
+    }
+
+    public double getFieldHeight() {
+        return fieldHeight;
+    }
+
+    public void setFieldHeight(double fieldHeight) {
+        this.fieldHeight = fieldHeight;
+    }
+
+    public double getFieldWidth() {
+        return fieldWidth;
+    }
+
+    public void setFieldWidth(double fieldWidth) {
+        this.fieldWidth = fieldWidth;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public Point getRandomPoint() {
+        return new Point(random.nextInt(width), random.nextInt(height));
     }
 }
 

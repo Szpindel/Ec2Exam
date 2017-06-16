@@ -1,10 +1,17 @@
 package SnakeLogic;
 
+import SnakeGUI.Main;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyCode;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import java.awt.*;
+import java.io.File;
 import java.util.Random;
 
 /**
@@ -17,9 +24,9 @@ public class PacMan implements GameObject {
     private int X;
     private int Y;
     private int score;
-    Random random = new Random();
+   // Random random = new Random();
     private Maze maze;
-    private JakeTalePiece taleFirst;
+   // private JakeTalePiece taleFirst;
     //   private JakeTalePiece taleLast;
 
     public PacMan(Point position) {
@@ -53,13 +60,19 @@ public class PacMan implements GameObject {
                 break;
         }
 
-        // Check if wrap-around
+        // Check if wrap-around (needs more thoughts)
         if(getX() <= 0){
             this.setX(maze.getWidth());
         }else if(getX() >= maze.getWidth()){
             this.setX(0);
 
         }
+
+
+        Media sound = new Media(new File("src/Sounds/pacman_chomp.wav").toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.play();
+
     }
 
     @Override

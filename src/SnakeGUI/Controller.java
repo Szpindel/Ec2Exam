@@ -1,9 +1,6 @@
 package SnakeGUI;
 
-import SnakeLogic.GameObject;
-import SnakeLogic.Item;
-import SnakeLogic.PacMan;
-import SnakeLogic.Maze;
+import SnakeLogic.*;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,6 +30,7 @@ public class Controller {
 
     ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
     private PacMan pacMan;
+    private Ghost ghost;
 
     public void btnStartAction(ActionEvent event)
     {
@@ -51,6 +49,7 @@ public class Controller {
 
             pacMan = new PacMan(new Point(15,15));
       //      gameObjects.add(pacMan);
+            ghost = new Ghost(new Point(14,15));
 //
 //        AddItems();
 //
@@ -121,7 +120,7 @@ public class Controller {
         maze.draw(g);
 
         // Draw ghosts
-
+        ghost.draw(g,maze);
         // Draw pacman
         pacMan.draw(g,maze);
 
