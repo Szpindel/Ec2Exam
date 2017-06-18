@@ -11,7 +11,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
-import java.io.IOException;
 import java.util.*;
 
 public class Controller {
@@ -32,6 +31,9 @@ public class Controller {
     private PacMan pacMan;
     private Ghost ghost;
 
+    private Point pacSpawnPos = new Point (15,15);
+    private Point ghostSpawnPos = new Point (14,15);
+
     public void btnStartAction(ActionEvent event)
     {
         System.out.println("btn clicked");
@@ -47,9 +49,10 @@ public class Controller {
     {
             maze = new Maze(canvas);
 
-            pacMan = new PacMan(new Point(15,15));
+            pacMan = new PacMan(getPacSpawnPos());
       //      gameObjects.add(pacMan);
-            ghost = new Ghost(new Point(14,15));
+            ghost = new Ghost(getGhostSpawnPos());
+
 //
 //        AddItems();
 //
@@ -66,13 +69,13 @@ public class Controller {
             }
         }.start();
     }
-
-    private void AddItems() {
-        Point pos1 = maze.getRandomPoint();
-        gameObjects.add(new Item(Color.BLUE, pos1.x, pos1.y, pacMan));
-        Point pos2 = maze.getRandomPoint();
-        gameObjects.add(new Item(Color.LIGHTBLUE, pos2.x,pos2.y, pacMan));
-    }
+//    LEFTOVER CODE
+//    private void AddItems() {
+//        Point pos1 = maze.getRandomPoint();
+//        gameObjects.add(new Item(Color.BLUE, pos1.x, pos1.y, pacMan));
+//        Point pos2 = maze.getRandomPoint();
+//        gameObjects.add(new Item(Color.LIGHTBLUE, pos2.x,pos2.y, pacMan));
+//    }
 
     public void keyPressed(KeyCode keyCode)
     {
@@ -132,5 +135,24 @@ public class Controller {
 
     }
 
+    private void checkForKillCondition(){
 
+        }
+
+
+    public Point getPacSpawnPos() {
+        return pacSpawnPos;
+    }
+
+    public void setPacSpawnPos(Point pacSpawnPos) {
+        this.pacSpawnPos = pacSpawnPos;
+    }
+
+    public Point getGhostSpawnPos() {
+        return ghostSpawnPos;
+    }
+
+    public void setGhostSpawnPos(Point ghostSpawnPos) {
+        this.ghostSpawnPos = ghostSpawnPos;
+    }
 }

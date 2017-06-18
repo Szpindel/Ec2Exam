@@ -29,10 +29,12 @@ public class PacMan implements GameObject {
    // private JakeTalePiece taleFirst;
     //   private JakeTalePiece taleLast;
 
-    public PacMan(Point position) {
+
+
+    public PacMan(Point pacPosition) {
         this.maze = maze;
-        X = position.x;
-        Y = position.y;
+        X = pacPosition.x;
+        Y = pacPosition.y;
     }
 
     @Override
@@ -41,21 +43,25 @@ public class PacMan implements GameObject {
             case DOWN:
                 if (maze.checkAvailability(new Point(this.getX(), this.getY() + 1))) {
                     this.setY(this.getY() + 1);
+                    System.out.print(this.getX() + "/" + (this.getY()+1));
                 }
                 break;
             case LEFT:
                 if (maze.checkAvailability(new Point(this.getX() - 1, this.getY()))) {
                     this.setX(this.getX() - 1);
+                    System.out.println((this.getX()-1) + "/" + this.getY());
                 }
                 break;
             case RIGHT:
                 if (maze.checkAvailability(new Point(this.getX() + 1, this.getY()))) {
                     this.setX(this.getX() + 1);
+                    System.out.println((this.getX()+1) + "/" + this.getY());
                 }
                 break;
             case UP:
                 if (maze.checkAvailability(new Point(this.getX(), this.getY() - 1))) {
                     this.setY(this.getY() - 1);
+                    System.out.println(this.getX() + "/" + (this.getY()-1));
                 }
                 break;
         }
@@ -68,8 +74,8 @@ public class PacMan implements GameObject {
 
         }
 
-
-        Media sound = new Media(new File("src/Sounds/pacman_chomp.wav").toURI().toString());
+        //play soundeffects
+        Media sound = new Media(new File("src/Sounds/pacChompBru.mp3").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
 
@@ -81,6 +87,11 @@ public class PacMan implements GameObject {
         graphicsContext.setFill(Color.YELLOW);
         graphicsContext.fillOval(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight());
     }
+
+    public void increaseScore(int increment){
+        score+=increment;
+    }
+
 
     public int getX() {
         return X;
@@ -96,10 +107,6 @@ public class PacMan implements GameObject {
 
     public void setY(int y) {
         Y = y;
-    }
-
-    public void increaseScore(int increment){
-        score+=increment;
     }
 
     public int getScore() {

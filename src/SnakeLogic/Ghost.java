@@ -30,11 +30,13 @@ public class Ghost implements GameObject {
     // private JakeTalePiece taleFirst;
     //   private JakeTalePiece taleLast;
 
-    public Ghost(Point position) {
+    public Ghost(Point ghostPosition) {
         this.maze = maze;
-        X = position.x;
-        Y = position.y;
+        X = ghostPosition.x;
+        Y = ghostPosition.y;
     }
+
+
 
     @Override
     public void update(KeyCode keyPressed, Maze maze) {
@@ -43,7 +45,7 @@ public class Ghost implements GameObject {
 
     @Override
     public void draw(GraphicsContext graphicsContext, Maze maze) {
-        // draw PacMan
+        // draw Ghost
         graphicsContext.setFill(Color.RED);
         graphicsContext.fillOval(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight());
         graphicsContext.fillRect(this.getX() * maze.getFieldWidth(), (this.getY() * maze.getFieldHeight()) + maze.getFieldHeight()/2, maze.getFieldWidth(), (maze.getFieldHeight())/2);

@@ -1,5 +1,6 @@
 package SnakeLogic;
 
+import com.sun.tools.javah.Util;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -44,22 +45,22 @@ public class Maze {
                         break;
                     case 1:
                         Path smallPillPath = new Path(x,y,fieldWidth,fieldHeight);
-                        smallPillPath.createSmallPill();
+                        smallPillPath.assignSmallPill();
                         fields[x][y] = smallPillPath;
                         break;
                     case 2:
                         Path bigPillPath = new Path(x,y,fieldWidth,fieldHeight);
-                        bigPillPath.createBigPill();
+                        bigPillPath.assignBigPill();
                         fields[x][y] = bigPillPath;
                         break;
                     case 3:
                         Path emptyPath = new Path(x,y,fieldWidth,fieldHeight);
-                        emptyPath.createEmptyPath();
+                        emptyPath.assignEmptyPath();
                         fields[x][y] = emptyPath;
                         break;
                     case 4:
                         Path ghostSpawnPath = new Path(x,y,fieldWidth,fieldHeight);
-                        ghostSpawnPath.createGhostSpawnPath();
+                        ghostSpawnPath.assignGhostSpawnPath();
                         fields[x][y] = ghostSpawnPath;
                         break;
                 }
@@ -125,13 +126,22 @@ public class Maze {
         if(fields[pacman.getX()][pacman.getY()] instanceof Path){
             Path path = (Path) fields[pacman.getX()][pacman.getY()];
             if(path.hasSmallPill){
-                pacman.increaseScore(100);
+                pacman.increaseScore(10);
                 path.removePill();
-            }else if(path.hasBigPill){
-                pacman.increaseScore(500);
+            }else if(path.hasBigPill) {
+                pacman.increaseScore(50);
                 path.removePill();
-
                 // SET SUPER MODE FOR PACMAN
+                path.superPowered = true;
+                System.out.println("super powered!");
+                //increase pacSpeed()
+                //call pacAmok() or something
+
+
+
+            }else if (path.hasGhost){
+                System.out.println("GAME OVER");
+                System.exit(0);
             }
         };
     }

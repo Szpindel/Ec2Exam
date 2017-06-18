@@ -9,6 +9,8 @@ import javafx.scene.paint.Color;
  */
 public class JakeTalePiece implements GameObject{
 
+    //DELETE THIS CLASS?
+
     private int x;
     private int y;
     private JakeTalePiece next;

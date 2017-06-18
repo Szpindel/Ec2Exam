@@ -28,6 +28,4 @@ public abstract class Field {
         g.fillRect(x*width, y*height, width, height);
     };
 
-
-
 }
