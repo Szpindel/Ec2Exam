@@ -26,6 +26,7 @@ public abstract class Field {
     public void draw(GraphicsContext g){
         g.setFill(color);
         g.fillRect(x*width, y*height, width, height);
+
     };
 
     @Override

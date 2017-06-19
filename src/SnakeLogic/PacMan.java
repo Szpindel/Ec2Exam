@@ -22,8 +22,8 @@ import java.util.Random;
 //fix this "tale" business
 public class PacMan extends GameObject {
 
-    private int X;
-    private int Y;
+//    private int X;
+//    private int Y;
     private int score;
    // Random random = new Random();
    // private JakeTalePiece taleFirst;
@@ -61,9 +61,9 @@ public class PacMan extends GameObject {
         }
 
         //play soundeffects
-        Media sound = new Media(new File("src/Sounds/pacChompBru.mp3").toURI().toString());
-        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-        mediaPlayer.play();
+//        Media sound = new Media(new File("src/Sounds/pacChompBru.mp3").toURI().toString());
+//        MediaPlayer mediaPlayer = new MediaPlayer(sound);
+//        mediaPlayer.play();
     }
 
     public boolean isSuperPowered(){
@@ -72,7 +72,7 @@ public class PacMan extends GameObject {
     }
 
 
-    public void makeSuperpowered() {
+    public void makeSuperPowered() {
         superPowered = true;
     }
 

@@ -8,7 +8,6 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
 
 import java.awt.*;
 import java.util.*;
@@ -32,7 +31,11 @@ public class Controller {
     private PacMan pacMan;
 
     private Point pacSpawnPos = new Point (1,1);
-    private Point ghostSpawnPos = new Point (15,15);
+    private Point pinkGhostSpawnPos = new Point (15,15);
+    private Point blueGhostSpawnPos = new Point (14,15);
+    private Point redGhostSpawnPos = new Point (14,14);
+    private Point orangeGhostSpawnPos = new Point (15,14);
+
 
     public void btnStartAction(ActionEvent event)
     {
@@ -51,7 +54,10 @@ public class Controller {
 
             pacMan = new PacMan(pacSpawnPos);
       //      gameObjects.add(pacMan);
-            ghosts.add(new PinkGhost(getGhostSpawnPos()));
+            ghosts.add(new PinkGhost(getPinkGhostSpawnPos()));
+//            ghosts.add(new RedGhost(getRedGhostSpawnPos()));
+//            ghosts.add(new OrangeGhost(getOrangeGhostSpawnPos()));
+           // ghosts.add(new BlueGhost(getBlueGhostSpawnPos()));
 //
 //        AddItems();
 //
@@ -143,11 +149,23 @@ public class Controller {
         this.pacSpawnPos = pacSpawnPos;
     }
 
-    public Point getGhostSpawnPos() {
-        return ghostSpawnPos;
+    public Point getPinkGhostSpawnPos() {
+        return pinkGhostSpawnPos;
     }
 
-    public void setGhostSpawnPos(Point ghostSpawnPos) {
-        this.ghostSpawnPos = ghostSpawnPos;
+    public void setPinkGhostSpawnPos(Point pinkGhostSpawnPos) {
+        this.pinkGhostSpawnPos = pinkGhostSpawnPos;
+    }
+
+    public Point getBlueGhostSpawnPos() {
+        return blueGhostSpawnPos;
+    }
+
+    public Point getRedGhostSpawnPos() {
+        return redGhostSpawnPos;
+    }
+
+    public Point getOrangeGhostSpawnPos() {
+        return orangeGhostSpawnPos;
     }
 }

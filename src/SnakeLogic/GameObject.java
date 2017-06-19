@@ -2,7 +2,6 @@ package SnakeLogic;
 
 import SnakeGUI.Controller;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
 
 import java.awt.*;
 
@@ -10,16 +9,47 @@ import java.awt.*;
 public abstract class GameObject {
     private int X;
     private int Y;
-    protected Point initPosition;
+    private Point initPosition;
 
     public GameObject(Point position){
-        this.initPosition = position;
-        X = position.x;
-        Y = position.y;
+        this.setInitPosition(position);
+        setX(position.x);
+        setY(position.y);
     }
 //
-//    //should this include color?
+
     abstract void draw(GraphicsContext graphicsContext);
+
+    protected void moveUp(){
+        setY(getY() - 1);
+    }
+
+    protected void moveDown(){
+        setY(getY() + 1);
+    }
+
+    protected void moveLeft(){
+        setX(getX() - 1);
+        if(getX() <= 0){
+            setX(Controller.maze.getWidth());
+        }
+
+    }
+
+    protected void moveRight(){
+        setX(getX() + 1);
+        if(getX() >= Controller.maze.getWidth()){
+            setX(0);
+        }
+    }
+
+    public Point getInitPosition() {
+        return initPosition;
+    }
+
+    public void setInitPosition(Point initPosition) {
+        this.initPosition = initPosition;
+    }
 
     public int getX() {
         return X;
@@ -35,29 +65,5 @@ public abstract class GameObject {
 
     public void setY(int y) {
         Y = y;
-    }
-
-    protected void moveUp(){
-        Y--;
-    }
-
-    protected void moveDown(){
-        Y++;
-    }
-
-    protected void moveLeft(){
-        X--;
-        if(X <= 0){
-            X = Controller.maze.getWidth();
-        }
-
-    }
-
-    protected void moveRight(){
-        X++;
-
-        if(X >= Controller.maze.getWidth()){
-            X = 0;
-        }
     }
 }

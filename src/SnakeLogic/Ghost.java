@@ -31,7 +31,7 @@ public abstract class Ghost extends GameObject {
 
         // Print info
         if (pacMan.isSuperPowered()) {
-            System.out.println("flee!!");
+            // FLEE
         }
 
         // Check kill conditions
@@ -84,7 +84,7 @@ public abstract class Ghost extends GameObject {
 
     private void checkKillConditions(PacMan pacMan) {
         if (this.getX() == pacMan.getX() && this.getY() == pacMan.getY()) {
-            if (pacMan.isSuperPowered() == true) {
+            if (pacMan.isSuperPowered()) {
                 //respawn Ghost
                 resetToSpawn();
                 System.out.println("ghost respawns");
@@ -107,8 +107,8 @@ public abstract class Ghost extends GameObject {
 
     public void resetToSpawn() {
         // Potential error when casting
-        this.setY((int) super.initPosition.getY());
-        this.setX((int) super.initPosition.getX());
+        this.setY((int) super.getInitPosition().getY());
+        this.setX((int) super.getInitPosition().getX());
     }
 
 }

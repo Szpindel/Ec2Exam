@@ -18,7 +18,7 @@ public class Wall extends Field {
 
     public Wall(int x, int y, double width, double height){
         super(x,y,width,height);
-        color = Color.BLUE;
+        color = Color.DARKBLUE;
     }
 
 }
