@@ -32,8 +32,7 @@ public class PinkGhost extends Ghost {
         List<Field> moveList = new LinkedList<>();
         Path initPath = (Path) Controller.maze.getField(this);
         Path nextPath = initPath;
-        int numberOfTurns = 0;
-
+        numberOfMovesChecked = 0;
         //add current position as first element in queue
         queue.add(Controller.maze.getField(this));
         seenFields.add(Controller.maze.getField(this).toString());
@@ -44,7 +43,7 @@ public class PinkGhost extends Ghost {
                 for (Path path = (Path) currentField; path != initPath; path = path.routePath) { //
                     moveList.add(path);
                 }
-                System.out.println("Pinkie spent: " + numberOfTurns + " turns");
+                System.out.println("Pinkie checked " + numberOfMovesChecked + " possible moves");
 
             }
 
@@ -62,7 +61,7 @@ public class PinkGhost extends Ghost {
             for (int i = moveList.size(); i > 0 ; i--) {
                 nextPath = (Path) moveList.get(moveList.size() - i);
             }
-            numberOfTurns++;
+            numberOfMovesChecked++;
         }
 
         // Make the first step towards pacman
@@ -70,13 +69,10 @@ public class PinkGhost extends Ghost {
 
         // Clear memory of ghost
         seenFields.clear();
-
-        // Print
-
     }
 
     @Override
-    protected void flee() {
+    protected void flee(PacMan pacMan) {
         // get possible moves
         ArrayList<Field> possibleMoves = Controller.maze.getPossibleMoves(Controller.maze.getField(this));
 
@@ -120,8 +116,5 @@ public class PinkGhost extends Ghost {
 
     }
 
-    private void move(Field nextPath) {
-        this.setX(nextPath.x);
-        this.setY(nextPath.y);
-    }
+
 }

@@ -13,6 +13,8 @@ import java.util.HashSet;
 public abstract class Ghost extends GameObject {
     protected Color color;
     HashSet<String> seenFields = new HashSet<>();
+    int numberOfMovesChecked = 0;
+
 
     private int score;
     // Random random = new Random();
@@ -32,7 +34,7 @@ public abstract class Ghost extends GameObject {
             if (pacMan.isSuperPowered() == false) {
                 chase(pacMan);
             } else {
-                flee();
+                flee(pacMan);
             }
         } else {
             // random
@@ -73,7 +75,7 @@ public abstract class Ghost extends GameObject {
 
     abstract protected void chase(PacMan pacMan);
 
-    abstract protected void flee();
+    abstract protected void flee(PacMan pacMan);
 
 
     private void checkKillConditions(PacMan pacMan) {
@@ -90,6 +92,11 @@ public abstract class Ghost extends GameObject {
                 //Game Over screen; System.Exit(0)
             }
         }
+    }
+
+    protected void move(Field nextPath) {
+        this.setX(nextPath.x);
+        this.setY(nextPath.y);
     }
 
     @Override

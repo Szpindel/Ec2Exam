@@ -30,7 +30,7 @@ public class Controller {
     ArrayList<Ghost> ghosts = new ArrayList<>();
     private PacMan pacMan;
 
-    private Point pacSpawnPos = new Point (1,1);
+    private Point pacSpawnPos = new Point (14,23);
     private Point pinkGhostSpawnPos = new Point (15,15);
     private Point blueGhostSpawnPos = new Point (14,15);
     private Point redGhostSpawnPos = new Point (14,14);

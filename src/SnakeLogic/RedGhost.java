@@ -24,7 +24,7 @@ public class RedGhost extends Ghost{
     }
 
     @Override
-    protected void flee() {
+    protected void flee(PacMan pacMan) {
 
     }
 }
