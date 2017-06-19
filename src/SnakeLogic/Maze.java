@@ -145,31 +145,38 @@ public class Maze {
         return walkable;
     }
 
-    ArrayList<Field> getPossibleMoves(GameObject gameObject) {
+    ArrayList<Field> getPossibleMoves(Field field) {
         ArrayList<Field> possibleMoves = new ArrayList<>();
 
         //check if UP isWalkable and add to possibleMoves
-        if (fields[gameObject.getX()][gameObject.getY() - 1].isWalkable() && gameObject.getY() - 1 > 0) {
-            possibleMoves.add(fields[gameObject.getX()][gameObject.getY() - 1]);
+        if (fields[field.x][field.y - 1].isWalkable() && field.y - 1 > 0) {
+            possibleMoves.add(fields[field.x][field.y - 1]);
         }
         //check if Left isWalkable and add to possibleMoves
-        if (fields[gameObject.getX() - 1][gameObject.getY()].isWalkable() && gameObject.getX() - 1 > 0) {
-            possibleMoves.add(fields[gameObject.getX() - 1][gameObject.getY()]);
+        if (fields[field.x - 1][field.y].isWalkable() && field.x - 1 > 0) {
+            possibleMoves.add(fields[field.x - 1][field.y]);
         }
         //check if Right isWalkable and add to possibleMoves
-        if (fields[gameObject.getX() + 1][gameObject.getY()].isWalkable() && gameObject.getX() + 1 < width) {
-            possibleMoves.add(fields[gameObject.getX() + 1][gameObject.getY()]);
+        if (fields[field.x + 1][field.y].isWalkable() && field.x + 1 < width) {
+            possibleMoves.add(fields[field.x + 1][field.y]);
         }
         //check if Down isWalkable and add to possibleMoves
-        if (fields[gameObject.getX()][gameObject.getY() + 1].isWalkable() && gameObject.getY() + 1 < height) {
-            possibleMoves.add(fields[gameObject.getX()][gameObject.getY() + 1]);
+        if (fields[field.x][field.y + 1].isWalkable() && field.y + 1 < height) {
+            possibleMoves.add(fields[field.x][field.y + 1]);
         }
 
+        System.out.println(possibleMoves);
         return possibleMoves;
     }
+    
+    
 
     public Field getField(int x, int y){
         return fields[x][y];
+    }
+
+    public Field getField(GameObject gameObject){
+        return fields[gameObject.getX()][gameObject.getY()];
     }
 
     public void update(PacMan pacman) {

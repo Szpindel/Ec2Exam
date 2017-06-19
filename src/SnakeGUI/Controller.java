@@ -32,7 +32,7 @@ public class Controller {
     private PacMan pacMan;
 
     private Point pacSpawnPos = new Point (1,1);
-    private Point ghostSpawnPos = new Point (16,15);
+    private Point ghostSpawnPos = new Point (15,15);
 
     public void btnStartAction(ActionEvent event)
     {

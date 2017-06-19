@@ -60,14 +60,6 @@ public class PacMan extends GameObject {
                 break;
         }
 
-        // Check if wrap-around (needs more thoughts)
-        if(getX() <= 0){
-            this.setX(Controller.maze.getWidth());
-        }else if(getX() >= Controller.maze.getWidth()){
-            this.setX(0);
-
-        }
-
         //play soundeffects
         Media sound = new Media(new File("src/Sounds/pacChompBru.mp3").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);

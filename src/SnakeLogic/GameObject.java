@@ -1,5 +1,6 @@
 package SnakeLogic;
 
+import SnakeGUI.Controller;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 
@@ -47,9 +48,17 @@ public abstract class GameObject {
 
     protected void moveLeft(){
         X--;
+        if(X <= 0){
+            X = Controller.maze.getWidth();
+        }
+
     }
 
     protected void moveRight(){
         X++;
+
+        if(X >= Controller.maze.getWidth()){
+            X = 0;
+        }
     }
 }

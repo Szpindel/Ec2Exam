@@ -1,31 +1,17 @@
 package SnakeLogic;
 import SnakeGUI.Controller;
-import SnakeGUI.Main;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.input.KeyCode;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import java.awt.*;
-import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
-
-
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.input.KeyCode;
+import java.util.HashSet;
 
 /**
  * Created by brunofloerke on 16/06/2017.
  */
 public abstract class Ghost extends GameObject {
     protected Color color;
-    HashMap<String, Field> visitedFields = new HashMap<>();
+    HashSet<String> seenFields = new HashSet<>();
 
     private int score;
     // Random random = new Random();
@@ -38,14 +24,10 @@ public abstract class Ghost extends GameObject {
     }
 
     public void update(PacMan pacMan) {
-        // Add current field as visited
-        Field currentField = Controller.maze.getField(getX(),getY());
-        visitedFields.put(currentField.toString(), currentField);
-
 //        beRandom();
 
         // Change behaviour
-        changeBehaviour();
+        changeBehaviour(pacMan);
 
         // Print info
         if (pacMan.isSuperPowered()) {
@@ -56,11 +38,11 @@ public abstract class Ghost extends GameObject {
         checkKillConditions(pacMan);
     }
 
-    protected void changeBehaviour() {
+    protected void changeBehaviour(PacMan pacMan) {
         // TEMP
 //        beRandom();
 
-        chase();
+        chase(pacMan);
     }
 
     ;
@@ -97,7 +79,7 @@ public abstract class Ghost extends GameObject {
 
     }
 
-    abstract protected void chase();
+    abstract protected void chase(PacMan pacMan);
 
 
     private void checkKillConditions(PacMan pacMan) {
