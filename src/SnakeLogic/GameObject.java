@@ -9,10 +9,8 @@ import java.awt.*;
 public abstract class GameObject {
     private int X;
     private int Y;
-    private Point initPosition;
 
     public GameObject(Point position){
-        this.setInitPosition(position);
         setX(position.x);
         setY(position.y);
     }
@@ -43,13 +41,7 @@ public abstract class GameObject {
         }
     }
 
-    public Point getInitPosition() {
-        return initPosition;
-    }
 
-    public void setInitPosition(Point initPosition) {
-        this.initPosition = initPosition;
-    }
 
     public int getX() {
         return X;

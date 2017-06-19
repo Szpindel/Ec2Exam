@@ -136,10 +136,6 @@ public class Controller {
 //        }
     }
 
-    private void checkForKillCondition(){
-
-        }
-
 
     public Point getPacSpawnPos() {
         return pacSpawnPos;

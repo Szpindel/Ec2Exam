@@ -22,4 +22,9 @@ public class BlueGhost extends Ghost{
     protected void chase(PacMan pacMan) {
 
     }
+
+    @Override
+    protected void flee() {
+
+    }
 }

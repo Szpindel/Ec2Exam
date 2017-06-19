@@ -85,13 +85,13 @@ public class PacMan extends GameObject {
 
     public void enableSuperPower() {
         superPowered = true;
-        superPowerTimer = 100;
-        System.out.println("Superpowered");
+        superPowerTimer = 10;
+        //System.out.println("Superpowered");
     }
 
     public void disableSuperPower() {
         superPowered = false;
-        System.out.println("unpowered");
+        //System.out.println("unpowered");
 
     }
 

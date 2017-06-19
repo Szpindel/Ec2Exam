@@ -1,4 +1,5 @@
 package SnakeLogic;
+
 import SnakeGUI.Controller;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -14,6 +15,7 @@ public abstract class Ghost extends GameObject {
     HashSet<String> seenFields = new HashSet<>();
 
     private int score;
+    private Point initPosition;
     // Random random = new Random();
 
     // private JakeTalePiece taleFirst;
@@ -21,19 +23,20 @@ public abstract class Ghost extends GameObject {
 
     public Ghost(Point position) {
         super(position);
+        initPosition = position;
     }
 
     public void update(PacMan pacMan) {
 //        beRandom();
 
         // Change behaviour
-        if(pacMan.isHasBegun() == true){
-        if(pacMan.isSuperPowered() == false){
-            // chase
-            chase(pacMan);
-        }else{
-            // Flee
-        }}else{
+        if (pacMan.isHasBegun() == true) {
+            if (pacMan.isSuperPowered() == false) {
+                chase(pacMan);
+            } else {
+                flee();
+            }
+        } else {
             // random
             beRandom();
         }
@@ -46,9 +49,9 @@ public abstract class Ghost extends GameObject {
     protected void beRandom() {
         int random = (int) (Math.random() * 4);
 
-        if(Controller.maze.checkAvailability(this, random)){
+        if (Controller.maze.checkAvailability(this, random)) {
             // Move
-            switch(random){
+            switch (random) {
                 case 0:
                     moveUp();
                     break;
@@ -62,20 +65,17 @@ public abstract class Ghost extends GameObject {
                     moveDown();
                     break;
             }
-        }else{
+        } else {
             // try again
             beRandom();
         }
 
 
-
-    }
-
-    protected void runAway() {
-
     }
 
     abstract protected void chase(PacMan pacMan);
+
+    abstract protected void flee();
 
 
     private void checkKillConditions(PacMan pacMan) {
@@ -103,8 +103,16 @@ public abstract class Ghost extends GameObject {
 
     public void resetToSpawn() {
         // Potential error when casting
-        this.setY((int) super.getInitPosition().getY());
-        this.setX((int) super.getInitPosition().getX());
+        this.setY((int) getInitPosition().getY());
+        this.setX((int) getInitPosition().getX());
+    }
+
+    public Point getInitPosition() {
+        return initPosition;
+    }
+
+    public void setInitPosition(Point initPosition) {
+        this.initPosition = initPosition;
     }
 
 }
