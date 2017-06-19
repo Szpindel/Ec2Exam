@@ -9,10 +9,13 @@ import java.awt.*;
 public abstract class GameObject {
     private int X;
     private int Y;
+    private Point initPosition;
+
 
     public GameObject(Point position){
         setX(position.x);
         setY(position.y);
+        initPosition = position;
     }
 //
 
@@ -39,6 +42,20 @@ public abstract class GameObject {
         if(getX() >= Controller.maze.getWidth()){
             setX(0);
         }
+    }
+
+    public void resetToSpawn() {
+        // Potential error when casting
+        this.setY((int) getInitPosition().getY());
+        this.setX((int) getInitPosition().getX());
+    }
+
+    public Point getInitPosition() {
+        return initPosition;
+    }
+
+    public void setInitPosition(Point initPosition) {
+        this.initPosition = initPosition;
     }
 
 

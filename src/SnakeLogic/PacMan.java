@@ -22,13 +22,14 @@ import java.util.Random;
 //fix this "tale" business
 public class PacMan extends GameObject {
 
-//    private int X;
+    //    private int X;
 //    private int Y;
     private int score;
     private boolean hasBegun = false;
     private int superPowerTimer = 0;
-   // Random random = new Random();
-   // private JakeTalePiece taleFirst;
+    private int numberOfLives = 3;
+    // Random random = new Random();
+    // private JakeTalePiece taleFirst;
     //   private JakeTalePiece taleLast;
     private boolean superPowered = false;
 
@@ -45,19 +46,19 @@ public class PacMan extends GameObject {
                 hasBegun = true;
                 break;
             case LEFT:
-                if (Controller.maze.checkAvailability(this, 1)){
-                super.moveLeft();
+                if (Controller.maze.checkAvailability(this, 1)) {
+                    super.moveLeft();
                 }
                 hasBegun = true;
                 break;
             case RIGHT:
-                if (Controller.maze.checkAvailability(this, 2)){
+                if (Controller.maze.checkAvailability(this, 2)) {
                     super.moveRight();
                 }
                 hasBegun = true;
                 break;
             case UP:
-                if (Controller.maze.checkAvailability(this, 0)){
+                if (Controller.maze.checkAvailability(this, 0)) {
                     super.moveUp();
                 }
                 hasBegun = true;
@@ -65,20 +66,20 @@ public class PacMan extends GameObject {
         }
 
         // Update power structure
-        if(isSuperPowered()){
+        if (isSuperPowered()) {
             superPowerTimer--;
         }
 
-        if(superPowerTimer < 0){
+        if (superPowerTimer < 0) {
             disableSuperPower();
         }
     }
 
-    public boolean isSuperPowered(){
+    public boolean isSuperPowered() {
         return superPowered;
     }
 
-    public boolean isHasBegun(){
+    public boolean isHasBegun() {
         return hasBegun;
     }
 
@@ -100,12 +101,12 @@ public class PacMan extends GameObject {
         // draw PacMan
         graphicsContext.setFill(Color.YELLOW);
         graphicsContext.fillOval(this.getX() * Controller.maze.getFieldWidth(), this.getY() * Controller.maze.getFieldHeight(),
-                                    Controller.maze.getFieldWidth(), Controller.maze.getFieldHeight());
+                Controller.maze.getFieldWidth(), Controller.maze.getFieldHeight());
     }
 
 
-    public void increaseScore(int increment){
-        score+=increment;
+    public void increaseScore(int increment) {
+        score += increment;
     }
 
 
@@ -114,4 +115,13 @@ public class PacMan extends GameObject {
     }
 
 
+    public void removeLife() {
+        numberOfLives--;
+        if (numberOfLives < 0) {
+            System.out.println("GAME OVER");
+            System.exit(0);
+        } else {
+            super.resetToSpawn();
+        }
+    }
 }

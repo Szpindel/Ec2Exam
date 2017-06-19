@@ -15,7 +15,6 @@ public abstract class Ghost extends GameObject {
     HashSet<String> seenFields = new HashSet<>();
 
     private int score;
-    private Point initPosition;
     // Random random = new Random();
 
     // private JakeTalePiece taleFirst;
@@ -23,7 +22,6 @@ public abstract class Ghost extends GameObject {
 
     public Ghost(Point position) {
         super(position);
-        initPosition = position;
     }
 
     public void update(PacMan pacMan) {
@@ -87,6 +85,7 @@ public abstract class Ghost extends GameObject {
 
                 //increase score
             } else {
+                pacMan.removeLife();
                 System.out.println("Pacman dies");
                 //Game Over screen; System.Exit(0)
             }
@@ -100,19 +99,4 @@ public abstract class Ghost extends GameObject {
         graphicsContext.fillOval(this.getX() * Controller.maze.getFieldWidth(), this.getY() * Controller.maze.getFieldHeight(), Controller.maze.getFieldWidth(), Controller.maze.getFieldHeight());
         graphicsContext.fillRect(this.getX() * Controller.maze.getFieldWidth(), (this.getY() * Controller.maze.getFieldHeight()) + Controller.maze.getFieldHeight() / 2, Controller.maze.getFieldWidth(), (Controller.maze.getFieldHeight()) / 2);
     }
-
-    public void resetToSpawn() {
-        // Potential error when casting
-        this.setY((int) getInitPosition().getY());
-        this.setX((int) getInitPosition().getX());
-    }
-
-    public Point getInitPosition() {
-        return initPosition;
-    }
-
-    public void setInitPosition(Point initPosition) {
-        this.initPosition = initPosition;
-    }
-
 }
