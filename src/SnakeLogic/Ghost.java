@@ -27,25 +27,21 @@ public abstract class Ghost extends GameObject {
 //        beRandom();
 
         // Change behaviour
-        changeBehaviour(pacMan);
-
-        // Print info
-        if (pacMan.isSuperPowered()) {
-            // FLEE
+        if(pacMan.isHasBegun() == true){
+        if(pacMan.isSuperPowered() == false){
+            // chase
+            chase(pacMan);
+        }else{
+            // Flee
+        }}else{
+            // random
+            beRandom();
         }
 
         // Check kill conditions
         checkKillConditions(pacMan);
     }
 
-    protected void changeBehaviour(PacMan pacMan) {
-        // TEMP
-//        beRandom();
-
-        chase(pacMan);
-    }
-
-    ;
 
     protected void beRandom() {
         int random = (int) (Math.random() * 4);

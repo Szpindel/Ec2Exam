@@ -189,8 +189,7 @@ public class Maze {
                 pacman.increaseScore(50);
                 path.removePill();
                 // SET SUPER MODE FOR PACMAN
-                pacman.makeSuperPowered();
-                System.out.println("super powered!");
+                pacman.enableSuperPower();
                 //increase pacSpeed()
                 //call pacAmok() or something
 

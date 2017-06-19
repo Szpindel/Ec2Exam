@@ -25,12 +25,12 @@ public class PacMan extends GameObject {
 //    private int X;
 //    private int Y;
     private int score;
+    private boolean hasBegun = false;
+    private int superPowerTimer = 0;
    // Random random = new Random();
    // private JakeTalePiece taleFirst;
     //   private JakeTalePiece taleLast;
     private boolean superPowered = false;
-
-
 
     public PacMan(Point pacPosition) {
         super(pacPosition);
@@ -42,38 +42,57 @@ public class PacMan extends GameObject {
                 if (Controller.maze.checkAvailability(this, 3)) {
                     super.moveDown();
                 }
+                hasBegun = true;
                 break;
             case LEFT:
                 if (Controller.maze.checkAvailability(this, 1)){
                 super.moveLeft();
                 }
+                hasBegun = true;
                 break;
             case RIGHT:
                 if (Controller.maze.checkAvailability(this, 2)){
                     super.moveRight();
                 }
+                hasBegun = true;
                 break;
             case UP:
                 if (Controller.maze.checkAvailability(this, 0)){
                     super.moveUp();
                 }
+                hasBegun = true;
                 break;
         }
 
-        //play soundeffects
-//        Media sound = new Media(new File("src/Sounds/pacChompBru.mp3").toURI().toString());
-//        MediaPlayer mediaPlayer = new MediaPlayer(sound);
-//        mediaPlayer.play();
+        // Update power structure
+        if(isSuperPowered()){
+            superPowerTimer--;
+        }
+
+        if(superPowerTimer < 0){
+            disableSuperPower();
+        }
     }
 
     public boolean isSuperPowered(){
         return superPowered;
-        //superPoweredTimer here
+    }
+
+    public boolean isHasBegun(){
+        return hasBegun;
     }
 
 
-    public void makeSuperPowered() {
+    public void enableSuperPower() {
         superPowered = true;
+        superPowerTimer = 100;
+        System.out.println("Superpowered");
+    }
+
+    public void disableSuperPower() {
+        superPowered = false;
+        System.out.println("unpowered");
+
     }
 
     @Override

@@ -55,9 +55,9 @@ public class Controller {
             pacMan = new PacMan(pacSpawnPos);
       //      gameObjects.add(pacMan);
             ghosts.add(new PinkGhost(getPinkGhostSpawnPos()));
-//            ghosts.add(new RedGhost(getRedGhostSpawnPos()));
-//            ghosts.add(new OrangeGhost(getOrangeGhostSpawnPos()));
-           // ghosts.add(new BlueGhost(getBlueGhostSpawnPos()));
+            ghosts.add(new RedGhost(getRedGhostSpawnPos()));
+            ghosts.add(new OrangeGhost(getOrangeGhostSpawnPos()));
+            ghosts.add(new BlueGhost(getBlueGhostSpawnPos()));
 //
 //        AddItems();
 //
