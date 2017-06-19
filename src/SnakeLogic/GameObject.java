@@ -16,10 +16,9 @@ public abstract class GameObject {
         this.initPosition = position;
         X = position.x;
         Y = position.y;
-        System.out.println(X + " " + Y);
     }
-
-    //should this include color?
+//
+//    //should this include color?
     abstract void draw(GraphicsContext graphicsContext);
 
     public int getX() {

@@ -11,6 +11,7 @@ public class Path extends Field {
     boolean hasBigPill;
     boolean isGhostSpawn;
     boolean isEmptyPath;
+    Path routePath;
     //if toggled when superPowered ++score, killGhost(); if toggled when regular ol' Pac display GAME OVER and System.Exit(0)
 
     @Override
@@ -22,6 +23,11 @@ public class Path extends Field {
     public Path(int x, int y, double width, double height) {
         super(x, y, width, height);
         color = Color.BLACK;
+    }
+
+    public Path(Path clonePath, Path routePath){
+        super(clonePath.x,clonePath.y,clonePath.width,clonePath.height);
+        this.routePath = routePath;
     }
 
     void assignSmallPill() {

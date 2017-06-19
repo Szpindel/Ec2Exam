@@ -165,7 +165,6 @@ public class Maze {
             possibleMoves.add(fields[field.x][field.y + 1]);
         }
 
-        System.out.println(possibleMoves);
         return possibleMoves;
     }
     

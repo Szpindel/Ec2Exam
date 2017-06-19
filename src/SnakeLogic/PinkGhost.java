@@ -8,6 +8,7 @@ import java.util.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Created by brunofloerke on 19/06/2017.
@@ -42,23 +43,32 @@ public class PinkGhost extends Ghost {
 
 
         Queue<Field> queue = new LinkedList<>();
+        List<Field> moveList = new LinkedList<>();
+        Path initPath = (Path) Controller.maze.getField(this);
         queue.add(Controller.maze.getField(this));
         seenFields.add(Controller.maze.getField(this).toString());
 
         while (!queue.isEmpty()) {
             Field currentField = queue.remove();
-            System.out.println(queue.size());
 
             if (currentField.x == pacMan.getX() && currentField.y == pacMan.getY()) {
                 // Check if pacmans found (base-case)
                 System.out.println("Found pacman at: " + currentField);
-                System.exit(0);
+
+                moveList = new LinkedList<>();
+
+                for(Path path = (Path) currentField; path != initPath; path = path.routePath){
+                    moveList.add(path);
+                }
+                //move to (moveList.size()-1)
+                System.out.println(moveList.get(moveList.size()-1));
             }
 
             for (Field field: Controller.maze.getPossibleMoves(currentField)) {
                 if (!seenFields.contains(field.toString())) {
-                    queue.add(field);
-                    seenFields.add(field.toString());
+                    Path path = new Path((Path) field, (Path) currentField);
+                    queue.add(path);
+                    seenFields.add(path.toString());
                 }
             }
         }
