@@ -21,7 +21,7 @@ public class Controller {
     @FXML
     Canvas canvas;
 
-    private Maze maze;
+    public static Maze maze;
     private Random random = new Random();
     private int gameLoopDelay = 500;
     private float refreshRate =300;
@@ -88,7 +88,7 @@ public class Controller {
      */
     private void update(long now)
     {
-        pacMan.update(keyPressed, maze);
+        pacMan.update(keyPressed);
 
         maze.update(pacMan);
 
@@ -128,10 +128,10 @@ public class Controller {
 
         // Draw ghosts
         for (Ghost ghost : ghosts){
-            ghost.draw(g, maze);
+            ghost.draw(g);
         }
         // Draw pacman
-        pacMan.draw(g,maze);
+        pacMan.draw(g);
 
 //        // draw gameObjects
 //        for (GameObject item : gameObjects)

@@ -9,9 +9,9 @@ import javafx.scene.paint.Color;
  */
 public interface GameObject {
 
-    void update(KeyCode keyPressed, Maze maze);
+    void update(KeyCode keyPressed);
 
 
     //should this include color?
-    void draw(GraphicsContext graphicsContext, Maze maze);
+    void draw(GraphicsContext graphicsContext);
 }

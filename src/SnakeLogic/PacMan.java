@@ -1,5 +1,6 @@
 package SnakeLogic;
 
+import SnakeGUI.Controller;
 import SnakeGUI.Main;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.media.Media;
@@ -37,28 +38,28 @@ public class PacMan implements GameObject {
     }
 
     @Override
-    public void update(KeyCode keyPressed, Maze maze) {
+    public void update(KeyCode keyPressed) {
         switch (keyPressed) {
             case DOWN:
-                if (maze.checkAvailability(new Point(this.getX(), this.getY() + 1))) {
+                if (Controller.maze.checkAvailability(new Point(this.getX(), this.getY() + 1))) {
                     this.setY(this.getY() + 1);
 //                    System.out.print(this.getX() + "/" + this.getY());
                 }
                 break;
             case LEFT:
-                if (maze.checkAvailability(new Point(this.getX() - 1, this.getY()))) {
+                if (Controller.maze.checkAvailability(new Point(this.getX() - 1, this.getY()))) {
                     this.setX(this.getX() - 1);
 //                    System.out.println((this.getX() +  "/" + this.getY()));
                 }
                 break;
             case RIGHT:
-                if (maze.checkAvailability(new Point(this.getX() + 1, this.getY()))) {
+                if (Controller.maze.checkAvailability(new Point(this.getX() + 1, this.getY()))) {
                     this.setX(this.getX() + 1);
 //                    System.out.println(this.getX() + "/" + this.getY());
                 }
                 break;
             case UP:
-                if (maze.checkAvailability(new Point(this.getX(), this.getY() - 1))) {
+                if (Controller.maze.checkAvailability(new Point(this.getX(), this.getY() - 1))) {
                     this.setY(this.getY() - 1);
 //                    System.out.println(this.getX() + "/" + this.getY());
                 }
@@ -67,8 +68,8 @@ public class PacMan implements GameObject {
 
         // Check if wrap-around (needs more thoughts)
         if(getX() <= 0){
-            this.setX(maze.getWidth());
-        }else if(getX() >= maze.getWidth()){
+            this.setX(Controller.maze.getWidth());
+        }else if(getX() >= Controller.maze.getWidth()){
             this.setX(0);
 
         }
@@ -90,10 +91,11 @@ public class PacMan implements GameObject {
     }
 
     @Override
-    public void draw(GraphicsContext graphicsContext, Maze maze) {
+    public void draw(GraphicsContext graphicsContext) {
         // draw PacMan
         graphicsContext.setFill(Color.YELLOW);
-        graphicsContext.fillOval(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight());
+        graphicsContext.fillOval(this.getX() * Controller.maze.getFieldWidth(), this.getY() * Controller.maze.getFieldHeight(),
+                                    Controller.maze.getFieldWidth(), Controller.maze.getFieldHeight());
     }
 
 

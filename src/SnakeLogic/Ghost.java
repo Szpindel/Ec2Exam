@@ -1,4 +1,5 @@
 package SnakeLogic;
+import SnakeGUI.Controller;
 import SnakeGUI.Main;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.media.Media;
@@ -39,7 +40,7 @@ public abstract class Ghost implements GameObject {
 
 
     @Override
-    public void update(KeyCode keyPressed, Maze maze) {
+    public void update(KeyCode keyPressed) {
 
     }
 
@@ -62,7 +63,39 @@ public abstract class Ghost implements GameObject {
     };
 
     protected void beRandom(){
+        int random = (int) (Math.random() * 4);
 
+        switch(random){
+            case 0:
+                if (Controller.maze.checkAvailability(new Point(this.getX(), this.getY()-1))){
+                    this.setY(this.getY() - 1);
+                }else{
+                    beRandom();
+                };
+                break;
+            case 1:
+                if (Controller.maze.checkAvailability(new Point(this.getX() +1 , this.getY()))){
+                    this.setX(this.getX() + 1);
+                }else{
+                    beRandom();
+                };
+                break;
+            case 2:
+                if (Controller.maze.checkAvailability(new Point(this.getX() - 1 , this.getY()))){
+                    this.setX(this.getX() - 1);
+                }else{
+                    beRandom();
+                };
+                break;
+            case 3:
+                if (Controller.maze.checkAvailability(new Point(this.getX(), this.getY()+1))){
+                //    System.out.println("move down");
+                    this.setY(this.getY() + 1);
+                }else{
+                    beRandom();
+                };
+                break;
+        }
     }
 
     protected void runAway(){
@@ -88,11 +121,11 @@ public abstract class Ghost implements GameObject {
     }
 
     @Override
-    public void draw(GraphicsContext graphicsContext, Maze maze) {
+    public void draw(GraphicsContext graphicsContext) {
         // draw Ghost
         graphicsContext.setFill(color);
-        graphicsContext.fillOval(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight());
-        graphicsContext.fillRect(this.getX() * maze.getFieldWidth(), (this.getY() * maze.getFieldHeight()) + maze.getFieldHeight()/2, maze.getFieldWidth(), (maze.getFieldHeight())/2);
+        graphicsContext.fillOval(this.getX() * Controller.maze.getFieldWidth(), this.getY() * Controller.maze.getFieldHeight(), Controller.maze.getFieldWidth(), Controller.maze.getFieldHeight());
+        graphicsContext.fillRect(this.getX() * Controller.maze.getFieldWidth(), (this.getY() * Controller.maze.getFieldHeight()) + Controller.maze.getFieldHeight()/2, Controller.maze.getFieldWidth(), (Controller.maze.getFieldHeight())/2);
     }
 
     public void resetToSpawn(){
