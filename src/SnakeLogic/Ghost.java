@@ -12,6 +12,8 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.awt.*;
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 
@@ -21,35 +23,32 @@ import javafx.scene.input.KeyCode;
 /**
  * Created by brunofloerke on 16/06/2017.
  */
-public abstract class Ghost implements GameObject {
+public abstract class Ghost extends GameObject {
     protected Color color;
-    private int X;
-    private int Y;
-    private Point initPosition;
+    HashMap<String, Field> visitedFields = new HashMap<>();
+
     private int score;
     // Random random = new Random();
 
     // private JakeTalePiece taleFirst;
     //   private JakeTalePiece taleLast;
 
-    public Ghost(Point ghostPosition) {
-        this.initPosition = ghostPosition;
-        X = ghostPosition.x;
-        Y = ghostPosition.y;
+    public Ghost(Point position) {
+        super(position);
     }
 
+    public void update(PacMan pacMan) {
+        // Add current field as visited
+        Field currentField = Controller.maze.getField(getX(),getY());
+        visitedFields.put(currentField.toString(), currentField);
 
-    @Override
-    public void update(KeyCode keyPressed) {
+//        beRandom();
 
-    }
-
-    public void update(PacMan pacMan){
         // Change behaviour
         changeBehaviour();
 
         // Print info
-        if (pacMan.isSuperPowered()){
+        if (pacMan.isSuperPowered()) {
             System.out.println("flee!!");
         }
 
@@ -57,63 +56,59 @@ public abstract class Ghost implements GameObject {
         checkKillConditions(pacMan);
     }
 
-    protected void changeBehaviour(){
+    protected void changeBehaviour() {
         // TEMP
-        beRandom();
-    };
+//        beRandom();
 
-    protected void beRandom(){
-        int random = (int) (Math.random() * 4);
-
-        switch(random){
-            case 0:
-                if (Controller.maze.checkAvailability(new Point(this.getX(), this.getY()-1))){
-                    this.setY(this.getY() - 1);
-                }else{
-                    beRandom();
-                };
-                break;
-            case 1:
-                if (Controller.maze.checkAvailability(new Point(this.getX() +1 , this.getY()))){
-                    this.setX(this.getX() + 1);
-                }else{
-                    beRandom();
-                };
-                break;
-            case 2:
-                if (Controller.maze.checkAvailability(new Point(this.getX() - 1 , this.getY()))){
-                    this.setX(this.getX() - 1);
-                }else{
-                    beRandom();
-                };
-                break;
-            case 3:
-                if (Controller.maze.checkAvailability(new Point(this.getX(), this.getY()+1))){
-                //    System.out.println("move down");
-                    this.setY(this.getY() + 1);
-                }else{
-                    beRandom();
-                };
-                break;
-        }
+        chase();
     }
 
-    protected void runAway(){
+    ;
+
+    protected void beRandom() {
+        int random = (int) (Math.random() * 4);
+
+        if(Controller.maze.checkAvailability(this, random)){
+            // Move
+            switch(random){
+                case 0:
+                    moveUp();
+                    break;
+                case 1:
+                    moveLeft();
+                    break;
+                case 2:
+                    moveRight();
+                    break;
+                case 3:
+                    moveDown();
+                    break;
+            }
+        }else{
+            // try again
+            beRandom();
+        }
+
+
+
+    }
+
+    protected void runAway() {
 
     }
 
     abstract protected void chase();
 
 
-    private void checkKillConditions(PacMan pacMan){
-        if (this.getX() == pacMan.getX() && this.getY() == pacMan.getY()){
-            if (pacMan.isSuperPowered() == true){
+    private void checkKillConditions(PacMan pacMan) {
+        if (this.getX() == pacMan.getX() && this.getY() == pacMan.getY()) {
+            if (pacMan.isSuperPowered() == true) {
                 //respawn Ghost
                 resetToSpawn();
                 System.out.println("ghost respawns");
 
                 //increase score
-            }else{
+            } else {
                 System.out.println("Pacman dies");
                 //Game Over screen; System.Exit(0)
             }
@@ -125,28 +120,13 @@ public abstract class Ghost implements GameObject {
         // draw Ghost
         graphicsContext.setFill(color);
         graphicsContext.fillOval(this.getX() * Controller.maze.getFieldWidth(), this.getY() * Controller.maze.getFieldHeight(), Controller.maze.getFieldWidth(), Controller.maze.getFieldHeight());
-        graphicsContext.fillRect(this.getX() * Controller.maze.getFieldWidth(), (this.getY() * Controller.maze.getFieldHeight()) + Controller.maze.getFieldHeight()/2, Controller.maze.getFieldWidth(), (Controller.maze.getFieldHeight())/2);
+        graphicsContext.fillRect(this.getX() * Controller.maze.getFieldWidth(), (this.getY() * Controller.maze.getFieldHeight()) + Controller.maze.getFieldHeight() / 2, Controller.maze.getFieldWidth(), (Controller.maze.getFieldHeight()) / 2);
     }
 
-    public void resetToSpawn(){
+    public void resetToSpawn() {
         // Potential error when casting
-        this.setY((int) initPosition.getY());
-        this.setX((int) initPosition.getX());
+        this.setY((int) super.initPosition.getY());
+        this.setX((int) super.initPosition.getX());
     }
 
-    public int getX() {
-        return X;
-    }
-
-    public void setX(int x) {
-        X = x;
-    }
-
-    public int getY() {
-        return Y;
-    }
-
-    public void setY(int y) {
-        Y = y;
-    }
 }

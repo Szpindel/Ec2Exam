@@ -20,7 +20,7 @@ import java.util.Random;
  */
 
 //fix this "tale" business
-public class PacMan implements GameObject {
+public class PacMan extends GameObject {
 
     private int X;
     private int Y;
@@ -33,35 +33,29 @@ public class PacMan implements GameObject {
 
 
     public PacMan(Point pacPosition) {
-        X = pacPosition.x;
-        Y = pacPosition.y;
+        super(pacPosition);
     }
 
-    @Override
     public void update(KeyCode keyPressed) {
         switch (keyPressed) {
             case DOWN:
-                if (Controller.maze.checkAvailability(new Point(this.getX(), this.getY() + 1))) {
-                    this.setY(this.getY() + 1);
-//                    System.out.print(this.getX() + "/" + this.getY());
+                if (Controller.maze.checkAvailability(this, 3)) {
+                    super.moveDown();
                 }
                 break;
             case LEFT:
-                if (Controller.maze.checkAvailability(new Point(this.getX() - 1, this.getY()))) {
-                    this.setX(this.getX() - 1);
-//                    System.out.println((this.getX() +  "/" + this.getY()));
+                if (Controller.maze.checkAvailability(this, 1)){
+                super.moveLeft();
                 }
                 break;
             case RIGHT:
-                if (Controller.maze.checkAvailability(new Point(this.getX() + 1, this.getY()))) {
-                    this.setX(this.getX() + 1);
-//                    System.out.println(this.getX() + "/" + this.getY());
+                if (Controller.maze.checkAvailability(this, 2)){
+                    super.moveRight();
                 }
                 break;
             case UP:
-                if (Controller.maze.checkAvailability(new Point(this.getX(), this.getY() - 1))) {
-                    this.setY(this.getY() - 1);
-//                    System.out.println(this.getX() + "/" + this.getY());
+                if (Controller.maze.checkAvailability(this, 0)){
+                    super.moveUp();
                 }
                 break;
         }
@@ -104,39 +98,9 @@ public class PacMan implements GameObject {
     }
 
 
-    public int getX() {
-        return X;
-    }
-
-    public void setX(int x) {
-        X = x;
-    }
-
-    public int getY() {
-        return Y;
-    }
-
-    public void setY(int y) {
-        Y = y;
-    }
-
     public int getScore() {
         return score;
     }
 
 
-//    public void addToTale() {
-//        JakeTalePiece jtp = new JakeTalePiece();
-//        if (taleFirst == null)
-//        {
-//            taleFirst = jtp;
-//            taleLast = jtp;
-//        }
-//        else
-//        {
-//            taleLast.setNext(jtp);
-//            taleLast = jtp;
-//        }
-//
-//    }
 }

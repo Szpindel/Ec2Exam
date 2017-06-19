@@ -31,9 +31,8 @@ public class Controller {
     ArrayList<Ghost> ghosts = new ArrayList<>();
     private PacMan pacMan;
 
-
-    private Point pacSpawnPos = new Point (2,2);
-    private Point ghostSpawnPos = new Point (14,15);
+    private Point pacSpawnPos = new Point (1,1);
+    private Point ghostSpawnPos = new Point (16,15);
 
     public void btnStartAction(ActionEvent event)
     {
@@ -50,7 +49,7 @@ public class Controller {
     {
             maze = new Maze(canvas);
 
-            pacMan = new PacMan(getPacSpawnPos());
+            pacMan = new PacMan(pacSpawnPos);
       //      gameObjects.add(pacMan);
             ghosts.add(new PinkGhost(getGhostSpawnPos()));
 //
@@ -90,7 +89,8 @@ public class Controller {
     {
         pacMan.update(keyPressed);
 
-        maze.update(pacMan);
+
+       maze.update(pacMan);
 
         for (Ghost ghost : ghosts){
             ghost.update(pacMan);
@@ -98,16 +98,6 @@ public class Controller {
         }
 
         labelStatus.setText(pacMan.getScore()+"");
-//
-//        for (int i = 0; i <gameObjects.size() ; i++) {
-//            gameObjects.get(i).update(keyPressed);
-//        }
-//
-//        if (random.nextInt(100) > itemSpawnPercentage)
-//        {
-//            Point randomPoint = maze.getRandomPoint();
-//            gameObjects.add(new Item(Color.LIGHTBLUE, randomPoint.x,randomPoint.y, pacMan));
-//        }
 
         drawCanvas();
 

@@ -28,4 +28,8 @@ public abstract class Field {
         g.fillRect(x*width, y*height, width, height);
     };
 
+    @Override
+    public String toString(){
+        return x + "_" + y;
+    }
 }
