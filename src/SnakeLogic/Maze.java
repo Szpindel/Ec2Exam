@@ -132,16 +132,11 @@ public class Maze {
                 pacman.increaseScore(50);
                 path.removePill();
                 // SET SUPER MODE FOR PACMAN
-                path.superPowered = true;
+                pacman.makeSuperpowered();
                 System.out.println("super powered!");
                 //increase pacSpeed()
                 //call pacAmok() or something
 
-
-
-            }else if (path.hasGhost){
-                System.out.println("GAME OVER");
-                System.exit(0);
             }
         };
     }

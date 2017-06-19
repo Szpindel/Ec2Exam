@@ -27,11 +27,12 @@ public class Controller {
     private float refreshRate =300;
     private KeyCode keyPressed = KeyCode.BACK_SPACE;
 
-    ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+    //ArrayList<GameObject> gameObjects = new ArrayList<GameObject>();
+    ArrayList<Ghost> ghosts = new ArrayList<>();
     private PacMan pacMan;
-    private Ghost ghost;
 
-    private Point pacSpawnPos = new Point (15,15);
+
+    private Point pacSpawnPos = new Point (2,2);
     private Point ghostSpawnPos = new Point (14,15);
 
     public void btnStartAction(ActionEvent event)
@@ -51,8 +52,7 @@ public class Controller {
 
             pacMan = new PacMan(getPacSpawnPos());
       //      gameObjects.add(pacMan);
-            ghost = new Ghost(getGhostSpawnPos());
-
+            ghosts.add(new PinkGhost(getGhostSpawnPos()));
 //
 //        AddItems();
 //
@@ -92,8 +92,12 @@ public class Controller {
 
         maze.update(pacMan);
 
-        labelStatus.setText(pacMan.getScore()+"");
+        for (Ghost ghost : ghosts){
+            ghost.update(pacMan);
 
+        }
+
+        labelStatus.setText(pacMan.getScore()+"");
 //
 //        for (int i = 0; i <gameObjects.size() ; i++) {
 //            gameObjects.get(i).update(keyPressed);
@@ -123,16 +127,17 @@ public class Controller {
         maze.draw(g);
 
         // Draw ghosts
-        ghost.draw(g,maze);
+        for (Ghost ghost : ghosts){
+            ghost.draw(g, maze);
+        }
         // Draw pacman
         pacMan.draw(g,maze);
 
-        // draw gameObjects
-        for (GameObject item : gameObjects)
-        {
-            item.draw(g, maze);
-        }
-
+//        // draw gameObjects
+//        for (GameObject item : gameObjects)
+//        {
+//            item.draw(g, maze);
+//        }
     }
 
     private void checkForKillCondition(){

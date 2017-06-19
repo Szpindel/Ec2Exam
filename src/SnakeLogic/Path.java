@@ -11,9 +11,7 @@ public class Path extends Field {
     boolean hasBigPill;
     boolean isGhostSpawn;
     boolean isEmptyPath;
-    boolean superPowered;
     //if toggled when superPowered ++score, killGhost(); if toggled when regular ol' Pac display GAME OVER and System.Exit(0)
-    boolean hasGhost;
 
     @Override
     boolean isWalkable() {

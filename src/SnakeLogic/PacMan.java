@@ -25,14 +25,13 @@ public class PacMan implements GameObject {
     private int Y;
     private int score;
    // Random random = new Random();
-    private Maze maze;
    // private JakeTalePiece taleFirst;
     //   private JakeTalePiece taleLast;
+    private boolean superPowered = false;
 
 
 
     public PacMan(Point pacPosition) {
-        this.maze = maze;
         X = pacPosition.x;
         Y = pacPosition.y;
     }
@@ -43,25 +42,25 @@ public class PacMan implements GameObject {
             case DOWN:
                 if (maze.checkAvailability(new Point(this.getX(), this.getY() + 1))) {
                     this.setY(this.getY() + 1);
-                    System.out.print(this.getX() + "/" + (this.getY()+1));
+//                    System.out.print(this.getX() + "/" + this.getY());
                 }
                 break;
             case LEFT:
                 if (maze.checkAvailability(new Point(this.getX() - 1, this.getY()))) {
                     this.setX(this.getX() - 1);
-                    System.out.println((this.getX()-1) + "/" + this.getY());
+//                    System.out.println((this.getX() +  "/" + this.getY()));
                 }
                 break;
             case RIGHT:
                 if (maze.checkAvailability(new Point(this.getX() + 1, this.getY()))) {
                     this.setX(this.getX() + 1);
-                    System.out.println((this.getX()+1) + "/" + this.getY());
+//                    System.out.println(this.getX() + "/" + this.getY());
                 }
                 break;
             case UP:
                 if (maze.checkAvailability(new Point(this.getX(), this.getY() - 1))) {
                     this.setY(this.getY() - 1);
-                    System.out.println(this.getX() + "/" + (this.getY()-1));
+//                    System.out.println(this.getX() + "/" + this.getY());
                 }
                 break;
         }
@@ -78,7 +77,16 @@ public class PacMan implements GameObject {
         Media sound = new Media(new File("src/Sounds/pacChompBru.mp3").toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(sound);
         mediaPlayer.play();
+    }
 
+    public boolean isSuperPowered(){
+        return superPowered;
+        //superPoweredTimer here
+    }
+
+
+    public void makeSuperpowered() {
+        superPowered = true;
     }
 
     @Override
@@ -87,6 +95,7 @@ public class PacMan implements GameObject {
         graphicsContext.setFill(Color.YELLOW);
         graphicsContext.fillOval(this.getX() * maze.getFieldWidth(), this.getY() * maze.getFieldHeight(), maze.getFieldWidth(), maze.getFieldHeight());
     }
+
 
     public void increaseScore(int increment){
         score+=increment;
@@ -112,6 +121,7 @@ public class PacMan implements GameObject {
     public int getScore() {
         return score;
     }
+
 
 //    public void addToTale() {
 //        JakeTalePiece jtp = new JakeTalePiece();
