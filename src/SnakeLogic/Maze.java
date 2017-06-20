@@ -3,7 +3,6 @@ package SnakeLogic;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
-import java.awt.*;
 import java.io.*;
 import java.util.Random;
 import java.util.List;
@@ -17,7 +16,6 @@ public class Maze {
     private double fieldWidth = 20;
     private int width;
     private int height;
-    private Random random = new Random();
     private Field[][] fields;
 
     public Maze(Canvas canvas) {
@@ -32,7 +30,7 @@ public class Maze {
         canvas.setHeight(height * fieldHeight);
         canvas.setWidth(width * fieldWidth);
 
-
+        //iterate through array and visually represent elements of maze
         for (int y = 0; y < array[0].length; y++) {
             for (int x = 0; x < array.length; x++) {
                 int type = array[x][y];
@@ -167,19 +165,13 @@ public class Maze {
 
         return possibleMoves;
     }
-    
-    
-
-    public Field getField(int x, int y){
-        return fields[x][y];
-    }
 
     public Field getField(GameObject gameObject){
         return fields[gameObject.getX()][gameObject.getY()];
     }
 
     public void update(PacMan pacman) {
-        // Check for pills
+        //Check for pills
         if (fields[pacman.getX()][pacman.getY()] instanceof Path) {
             Path path = (Path) fields[pacman.getX()][pacman.getY()];
             if (path.hasSmallPill) {
@@ -191,8 +183,6 @@ public class Maze {
                 // SET SUPER MODE FOR PACMAN
                 pacman.enableSuperPower();
                 //increase pacSpeed()
-                //call pacAmok() or something
-
             }
         }
         ;
@@ -202,36 +192,16 @@ public class Maze {
         return fieldHeight;
     }
 
-    public void setFieldHeight(double fieldHeight) {
-        this.fieldHeight = fieldHeight;
-    }
-
     public double getFieldWidth() {
         return fieldWidth;
-    }
-
-    public void setFieldWidth(double fieldWidth) {
-        this.fieldWidth = fieldWidth;
     }
 
     public int getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
-    }
-
     public int getHeight() {
         return height;
-    }
-
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public Point getRandomPoint() {
-        return new Point(random.nextInt(width), random.nextInt(height));
     }
 }
 

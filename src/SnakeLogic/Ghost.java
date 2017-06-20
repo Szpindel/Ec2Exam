@@ -27,7 +27,6 @@ public abstract class Ghost extends GameObject {
     }
 
     public void update(PacMan pacMan) {
-//        beRandom();
 
         // Change behaviour
         if (pacMan.isHasBegun() == true) {
@@ -79,17 +78,16 @@ public abstract class Ghost extends GameObject {
 
 
     private void checkKillConditions(PacMan pacMan) {
+        //compare ghost position with pac position
         if (this.getX() == pacMan.getX() && this.getY() == pacMan.getY()) {
+            //check for superPoweredness
             if (pacMan.isSuperPowered()) {
-                //respawn Ghost
                 resetToSpawn();
-                System.out.println("ghost respawns");
-
-                //increase score
+                System.out.println("Ghost respawns.");
+                pacMan.increaseScore(200);
             } else {
                 pacMan.removeLife();
-                System.out.println("Pacman dies");
-                //Game Over screen; System.Exit(0)
+                System.out.println("Pacman dies.");
             }
         }
     }

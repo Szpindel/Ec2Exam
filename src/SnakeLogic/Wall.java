@@ -1,10 +1,6 @@
 package SnakeLogic;
 
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.RoundRectangle2D;
 
 /**
  * Created by brunofloerke on 15/06/2017.

@@ -1,6 +1,5 @@
 package SnakeLogic;
 
-import SnakeGUI.Controller;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.awt.*;
@@ -31,17 +30,10 @@ public abstract class GameObject {
 
     protected void moveLeft(){
         setX(getX() - 1);
-        if(getX() <= 0){
-            setX(Controller.maze.getWidth());
-        }
-
     }
 
     protected void moveRight(){
         setX(getX() + 1);
-        if(getX() >= Controller.maze.getWidth()){
-            setX(0);
-        }
     }
 
     public void resetToSpawn() {
@@ -50,15 +42,10 @@ public abstract class GameObject {
         this.setX((int) getInitPosition().getX());
     }
 
+
     public Point getInitPosition() {
         return initPosition;
     }
-
-    public void setInitPosition(Point initPosition) {
-        this.initPosition = initPosition;
-    }
-
-
 
     public int getX() {
         return X;

@@ -1,36 +1,22 @@
 package SnakeLogic;
 
 import SnakeGUI.Controller;
-import SnakeGUI.Main;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyCode;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import java.awt.*;
-import java.io.File;
-import java.util.Random;
 
 /**
  * Created by Ebbe Vang on 21-02-2017.
  */
 
-//fix this "tale" business
 public class PacMan extends GameObject {
 
-    //    private int X;
-//    private int Y;
     private int score;
     private boolean hasBegun = false;
     private int superPowerTimer = 0;
     private int numberOfLives = 3;
-    // Random random = new Random();
-    // private JakeTalePiece taleFirst;
-    //   private JakeTalePiece taleLast;
     private boolean superPowered = false;
 
     public PacMan(Point pacPosition) {
@@ -65,11 +51,10 @@ public class PacMan extends GameObject {
                 break;
         }
 
-        // Update power structure
+        // Update power mode
         if (isSuperPowered()) {
             superPowerTimer--;
         }
-
         if (superPowerTimer < 0) {
             disableSuperPower();
         }
@@ -86,7 +71,7 @@ public class PacMan extends GameObject {
 
     public void enableSuperPower() {
         superPowered = true;
-        superPowerTimer = 10;
+        superPowerTimer = 25;
         //System.out.println("Superpowered");
     }
 
@@ -116,12 +101,16 @@ public class PacMan extends GameObject {
 
 
     public void removeLife() {
-        numberOfLives--;
-        if (numberOfLives < 0) {
+        numberOfLives = getNumberOfLives() - 1;
+        if (getNumberOfLives() < 0) {
             System.out.println("GAME OVER");
             System.exit(0);
         } else {
             super.resetToSpawn();
         }
+    }
+
+    public int getNumberOfLives() {
+        return numberOfLives;
     }
 }
