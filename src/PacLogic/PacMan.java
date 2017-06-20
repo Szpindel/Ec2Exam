@@ -1,6 +1,6 @@
-package SnakeLogic;
+package PacLogic;
 
-import SnakeGUI.Controller;
+import PacGUI.Controller;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.input.KeyCode;
@@ -53,9 +53,9 @@ public class PacMan extends GameObject {
 
         // Update power mode
         if (isSuperPowered()) {
-            superPowerTimer--;
+            setSuperPowerTimer(getSuperPowerTimer() - 1);
         }
-        if (superPowerTimer < 0) {
+        if (getSuperPowerTimer() == 0) {
             disableSuperPower();
         }
     }
@@ -71,7 +71,7 @@ public class PacMan extends GameObject {
 
     public void enableSuperPower() {
         superPowered = true;
-        superPowerTimer = 25;
+        setSuperPowerTimer(25);
         //System.out.println("Superpowered");
     }
 
@@ -112,5 +112,13 @@ public class PacMan extends GameObject {
 
     public int getNumberOfLives() {
         return numberOfLives;
+    }
+
+    public int getSuperPowerTimer() {
+        return superPowerTimer;
+    }
+
+    public void setSuperPowerTimer(int superPowerTimer) {
+        this.superPowerTimer = superPowerTimer;
     }
 }

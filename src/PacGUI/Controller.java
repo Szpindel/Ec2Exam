@@ -1,6 +1,6 @@
-package SnakeGUI;
+package PacGUI;
 
-import SnakeLogic.*;
+import PacLogic.*;
 import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +17,8 @@ public class Controller {
     private final int itemSpawnPercentage = 80;
     @FXML
     Label labelStatus;
+    @FXML
+    Label labelField;
     @FXML
     Canvas canvas;
 
@@ -35,9 +37,6 @@ public class Controller {
 
 
     public void btnStartAction(ActionEvent event) {
-        System.out.println("btn clicked");
-        labelStatus.setText("test");
-        //getRandomPosition();
         drawCanvas();
     }
 
@@ -87,8 +86,7 @@ public class Controller {
 
         }
 
-        labelStatus.setText("Remaining lives: " + pacMan.getNumberOfLives() + "     Score: " + pacMan.getScore());
-
+        labelStatus.setText("Remaining lives: " + pacMan.getNumberOfLives() + "   Score: " + pacMan.getScore() + "   Superpowered: " + pacMan.getSuperPowerTimer());
         drawCanvas();
 
     }

@@ -1,4 +1,4 @@
-package SnakeLogic;
+package PacLogic;
 
 import javafx.scene.paint.Color;
 

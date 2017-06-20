@@ -1,4 +1,4 @@
-package SnakeGUI;
+package PacGUI;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
@@ -13,9 +13,12 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
-        //loader.load(getClass().getResource("SnakeGUI.fxml".ope));
         Parent root = loader.load();
-        primaryStage.setTitle("paccers");
+        primaryStage.setTitle("Pᗣᗧ··•··MᗣN");
+        primaryStage.setHeight(700);
+        primaryStage.setWidth(600);
+        primaryStage.setResizable(false);
+
 
         Controller controller = (Controller) loader.getController();
 
@@ -27,7 +30,7 @@ public class Main extends Application {
             }
         });
         primaryStage.setScene(scene);
-        primaryStage.getScene().getStylesheets().add("SnakeGUI/stylesheet.css");
+        primaryStage.getScene().getStylesheets().add("PacGUI/stylesheet.css");
         primaryStage.show();
     }
 

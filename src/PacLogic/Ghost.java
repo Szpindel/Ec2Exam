@@ -1,6 +1,6 @@
-package SnakeLogic;
+package PacLogic;
 
-import SnakeGUI.Controller;
+import PacGUI.Controller;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
@@ -17,10 +17,7 @@ public abstract class Ghost extends GameObject {
 
 
     private int score;
-    // Random random = new Random();
 
-    // private JakeTalePiece taleFirst;
-    //   private JakeTalePiece taleLast;
 
     public Ghost(Point position) {
         super(position);

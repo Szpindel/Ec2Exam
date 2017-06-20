@@ -1,10 +1,9 @@
-package SnakeLogic;
+package PacLogic;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
 import java.io.*;
-import java.util.Random;
 import java.util.List;
 import java.util.ArrayList;
 

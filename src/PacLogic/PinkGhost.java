@@ -1,6 +1,6 @@
-package SnakeLogic;
+package PacLogic;
 
-import SnakeGUI.Controller;
+import PacGUI.Controller;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
@@ -113,8 +113,5 @@ public class PinkGhost extends Ghost {
 
         // Clear memory of ghost
         seenFields.clear();
-
     }
-
-
 }

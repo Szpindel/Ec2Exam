@@ -1,6 +1,6 @@
-package SnakeLogic;
+package PacLogic;
 
-import SnakeGUI.Controller;
+import PacGUI.Controller;
 import javafx.scene.paint.Color;
 
 import java.awt.*;
@@ -63,7 +63,6 @@ public class OrangeGhost extends Ghost {
                 bestMove = move;
                 longestDistance = point.distance(pacMan.getX(), pacMan.getY());
             }
-            ;
         }
 
         //move to field with lowest distance
